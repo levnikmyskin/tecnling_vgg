@@ -18,5 +18,6 @@ Intellij Idea Ultimate Edition
 * Select it and open it;
 * Once Intellij is done loading, right click on the root folder of the project (retoricaweb) and click on "Open module settings";
 * Go to Artifacts, verify that no error is shown and check the "Include in project build" checkbox (if it is not checked already);
-* Build the project, you should get a retoricaweb.war file in the target directory
+* Build the project, you should get a retoricaweb.war file in the target directory;
+* If you cannot build succesfully, try installing Maven on your operating system.
 
