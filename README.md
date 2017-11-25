@@ -2,18 +2,21 @@
 ## Exam project for "Tecnologie linguistiche per l'estrazione di informazione", Molinari, Pedrotti, Rambelli.
 
 Technologies used:
-Java SDK, version 1.8 (Java 8)
-Java Server Faces with [ICEFaces](http://www.icesoft.org/java/home.jsf)
-[ANTLR](http://www.antlr.org/) 
+* Java SDK, version 1.8 (Java 8)
+* Java Server Faces with [ICEFaces](http://www.icesoft.org/java/home.jsf)
+* [ANTLR](http://www.antlr.org/) 
+* Deployed on Tomcat under Apache under Nginx as a proxy
 
 IDE:
 Intellij Idea Ultimate Edition
 
 
-### Enabling Intellij Idea support for JSF:
-* Open the project view (if not opened already), eg. View->Tool Window->Project;
-* Right click on the root folder of the project (RetoricaWeb);
-* Click on Add Framework Support, select Web Application;
-* Select the JSF check box and finally select the ICEFaces checkbox.
+### To open the retoricaweb project with Intellij Idea:
+* Start Intellij Idea;
+* Click on "Open project" (or similar);
+* Locate the file "pom.xml" into the retoricaweb folder;
+* Select it and open it;
+* Once Intellij is done loading, right click on the root folder of the project (retoricaweb) and click on "Open module settings";
+* Go to Artifacts, verify that no error is shown and check the "Include in project build" checkbox (if it is not checked already);
+* Build the project, you should get a retoricaweb.war file in the target directory
 
-Check out [Jetbrains website](https://www.jetbrains.com/help/idea/preparing-for-jsf-application-development.html) for reference
