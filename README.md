@@ -15,7 +15,7 @@ Intellij Idea Ultimate Edition
 * Start Intellij Idea;
 * Click on "Open project" (or similar);
 * Locate the file "pom.xml" into the retoricaweb folder;
-* Select it and open it;
+* Select it and open it as a project;
 * Once Intellij is done loading, right click on the root folder of the project (retoricaweb) and click on "Open module settings";
 * Go to Artifacts, verify that no error is shown and check the "Include in project build" checkbox (if it is not checked already);
 * Build the project, you should get a retoricaweb.war file in the target directory;
