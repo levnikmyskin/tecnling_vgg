@@ -13,7 +13,7 @@ import java.util.Properties;
  * @author Alessio
  *
  * Helper class for connection and management of MongoDb.
- * The istance returned by the connect() method should be used
+ * The instance returned by the connect() method should be used
  * throughout the application
  */
 
@@ -60,7 +60,7 @@ public class MongodbHelper {
             return configs;
         } catch (IOException e){
             throw new RuntimeException("Could not parse config.properties file. Please check it is available in" +
-                    " the utils folder");
+                    " the resource folder");
         }
     }
 }
