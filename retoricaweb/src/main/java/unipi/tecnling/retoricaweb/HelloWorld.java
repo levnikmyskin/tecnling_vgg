@@ -5,7 +5,7 @@ import unipi.tecnling.retoricaweb.utils.MongodbHelper;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name = "helloWorld", eager = true)
+@ManagedBean(name="helloWorld", eager=true)
 public class HelloWorld {
 
     public HelloWorld() {
@@ -19,4 +19,6 @@ public class HelloWorld {
         System.out.println("prova");
         return "Hello heaven!";
     }
+
+
 }

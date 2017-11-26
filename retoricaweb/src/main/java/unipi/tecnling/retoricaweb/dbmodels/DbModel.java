@@ -1,10 +1,11 @@
 package unipi.tecnling.retoricaweb.dbmodels;
 
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 
 import org.bson.Document;
 import unipi.tecnling.retoricaweb.utils.MongodbHelper;
@@ -28,11 +29,20 @@ public class DbModel {
         return collection.find(eq(uniqueFieldName, uniqueFieldValue)).first();
     }
 
-    public MongoCollection<Document> getCollection() {
-        return collection;
+    boolean changeField(String key, String oldValue, String newValue){
+        getCollection().updateOne(
+                eq(key, oldValue),
+                combine(set(key, newValue))
+        );
+        return true;
     }
 
     public MongoDatabase getDatabase() {
         return database;
     }
+
+    private MongoCollection<Document> getCollection() {
+        return collection;
+    }
+
 }

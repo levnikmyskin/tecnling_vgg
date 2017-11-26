@@ -12,7 +12,6 @@ public class UserModel extends DbModel{
 
     public UserModel(String collection, String uniqueFieldName, String uniqueFieldValue) throws ObjectDoesNotExistException{
         super(collection, uniqueFieldName, uniqueFieldValue);
-        Document user = this.retrieveFromDb();
         initUser();
     }
 
@@ -32,10 +31,6 @@ public class UserModel extends DbModel{
         return surname;
     }
 
-    public boolean changeUsername(){
-        // STAB
-        return true;
-    }
 
     private void initUser() throws ObjectDoesNotExistException{
         Document user = this.retrieveFromDb();
