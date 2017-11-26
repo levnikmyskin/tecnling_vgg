@@ -22,7 +22,7 @@ public class LoginHelper {
             UserModel user = new UserModel("users", "username", username);
             String hashedPwd = BCrypt.hashpw(password, BCrypt.gensalt());
 
-            return hashedPwd == user.getPassword();
+            return hashedPwd.equals(user.getPassword());
         } catch(ObjectDoesNotExistException e){
             return false;
         }
