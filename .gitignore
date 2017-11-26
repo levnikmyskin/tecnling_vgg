@@ -22,4 +22,4 @@
 hs_err_pid*
 
 retoricaweb/.idea
-retoricaweb/config.properties
+retoricaweb/src/main/resources/config.properties

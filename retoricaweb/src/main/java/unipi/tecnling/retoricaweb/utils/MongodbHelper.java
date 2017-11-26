@@ -5,18 +5,16 @@ import com.mongodb.ServerAddress;
 import com.mongodb.MongoCredential;
 import com.mongodb.MongoClientOptions;
 
-import javax.management.RuntimeErrorException;
 import java.io.*;
-import java.net.URL;
 import java.util.Collections;
 import java.util.Properties;
 
 /*
  * @author Alessio
  *
- * Classe d'aiuto per la connessione e l'interazione con MongoDb.
- * In tutta l'applicazione dovrebbe essere usata la stessa istanza
- * ritornata dal metodo connect()
+ * Helper class for connection and management of MongoDb.
+ * The istance returned by the connect() method should be used
+ * throughout the application
  */
 
 public class MongodbHelper {
