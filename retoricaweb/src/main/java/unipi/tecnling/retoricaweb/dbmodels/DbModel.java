@@ -29,7 +29,7 @@ public class DbModel {
         return collection.find(eq(uniqueFieldName, uniqueFieldValue)).first();
     }
 
-    boolean changeField(String key, String oldValue, String newValue){
+    public boolean changeField(String key, String oldValue, String newValue){
         getCollection().updateOne(
                 eq(key, oldValue),
                 combine(set(key, newValue))
