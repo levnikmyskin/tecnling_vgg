@@ -10,8 +10,8 @@ public class UserModel extends DbModel{
     private String name;
     private String surname;
 
-    public UserModel(String collection, String uniqueFieldName, String uniqueFieldValue) throws ObjectDoesNotExistException{
-        super(collection, uniqueFieldName, uniqueFieldValue);
+    public UserModel(String uniqueFieldValue) throws ObjectDoesNotExistException{
+        super("users", "username", uniqueFieldValue);
         initUser();
     }
 
