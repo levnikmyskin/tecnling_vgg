@@ -9,9 +9,6 @@ import javax.faces.bean.ManagedBean;
 public class HelloWorld {
 
     public HelloWorld() {
-        MongodbHelper mdbHelper = new MongodbHelper();
-        MongoClient instance = mdbHelper.connect();
-
         System.out.println("HelloWorld started!");
     }
 

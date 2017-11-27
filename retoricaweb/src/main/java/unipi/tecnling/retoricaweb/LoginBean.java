@@ -36,6 +36,10 @@ public class LoginBean implements Serializable{
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
