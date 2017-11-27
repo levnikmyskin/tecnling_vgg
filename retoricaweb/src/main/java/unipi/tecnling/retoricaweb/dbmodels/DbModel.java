@@ -10,6 +10,12 @@ import static com.mongodb.client.model.Updates.set;
 import org.bson.Document;
 import unipi.tecnling.retoricaweb.utils.MongodbHelper;
 
+/**
+ * @author alessio
+ * Base class for Db modeling. It has to be extended for every model in this package.
+ * It deals with a single object from the collection, per instance.
+ */
+
 public class DbModel {
 
     private MongoDatabase database;
@@ -25,10 +31,23 @@ public class DbModel {
         this.uniqueFieldValue = uniqueFieldValue;
     }
 
+    /**
+     * Retrieve a single object from the collection, using the specified
+     * unique field name and value. If the two parameters are not unique,
+     * the method will return the first instance retrieved
+     * @return org.bson.Document
+     */
     Document retrieveFromDb(){
         return collection.find(eq(uniqueFieldName, uniqueFieldValue)).first();
     }
 
+    /**
+     * Utility to change any model field
+     * @param key the field name
+     * @param oldValue the old value of the field
+     * @param newValue the new value for the field
+     * @return true if succesfully changed
+     */
     public boolean changeField(String key, String oldValue, String newValue){
         getCollection().updateOne(
                 eq(key, oldValue),

@@ -3,6 +3,11 @@ package unipi.tecnling.retoricaweb.dbmodels;
 import org.bson.Document;
 import unipi.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
+/**
+ * @author alessio
+ * Model to manage users in the db, extends DbModel
+ * @see unipi.tecnling.retoricaweb.dbmodels.DbModel
+ */
 
 public class UserModel extends DbModel{
     private String username;

@@ -5,8 +5,8 @@ import unipi.tecnling.retoricaweb.dbmodels.UserModel;
 import unipi.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
 
-/*
- * @author Andrea
+/**
+ * @author andrea
  *
  * Helper class for managing login and logout
  * It logs the user in and saves it in the session

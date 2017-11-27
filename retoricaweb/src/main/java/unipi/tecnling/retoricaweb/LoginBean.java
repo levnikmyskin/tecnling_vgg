@@ -9,9 +9,9 @@ import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
 
-/*
+/**
  * @author Alessio
- * ManagedBean to handle login and logout, using utils.LoginHelper to handle logic
+ * ManagedBean to handle login and logout, using {@link LoginHelper} to handle logic
  * It either redirects to the index page or to the login page, showing the error
  */
 
