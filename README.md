@@ -1,4 +1,4 @@
-# tecnling_vgg
+# Tecnologie ling. Unipi, Retorica Web
 ## Exam project for "Tecnologie linguistiche per l'estrazione di informazione", Molinari, Pedrotti, Rambelli.
 
 Technologies used:
@@ -20,4 +20,15 @@ Intellij Idea Ultimate Edition
 * Go to Artifacts, verify that no error is shown and check the "Include in project build" checkbox (if it is not checked already);
 * Build the project, you should get a retoricaweb.war file in the target directory;
 * If you cannot build succesfully, try installing Maven on your operating system.
+
+### Tomcat configuration for running and debugging project locally:
+* Download Tomcat tar.gz (Linux/Mac) archive under binary distributions from apache website https://tomcat.apache.org/download-80.cgi;
+* Extract the archive somewhere appropriate;
+* In the upper menu, click on run -> edit confiurations;
+* Click on the + (plus) sign to add a new method and select Tomcat server -> local (if it's not available verify that it is enabled in the plugins settings);
+* On the application server section, click on Configure, then select the extracted tomcat folder as the Tomcat home;
+* In the Open browser section use http://localhost:8080/retoricaweb/index.jsf as a default;
+* On deployment tab, make sure there is the retoricaweb:war under "Deploy at the server startup" (if you cannot find it, try adding it or simply click on apply -> Ok and then reopen the configuration window; Intellij should give you an error with a "Fix" button, click it;
+* Try running the project
+
 
