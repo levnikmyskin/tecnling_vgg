@@ -1,0 +1,37 @@
+$errorColor: #f44336;
+
+body{
+  padding-left: 30rem;
+}
+
+.form-group{
+  display: block;
+  margin-top: 1rem;
+  input{
+    display: block;
+    margin-top: .5rem;
+  }
+}
+
+
+.error-messages{
+  display: block;
+  color: $errorColor;
+  margin-bottom: 2rem;
+}
+
+/*
+ * alessio:
+ * Style copied from https://www.w3schools.com/csS/css3_buttons.asp
+ */
+.login-button{
+  margin-top: 2rem;
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

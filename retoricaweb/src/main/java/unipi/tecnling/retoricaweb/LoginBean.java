@@ -25,9 +25,9 @@ public class LoginBean implements Serializable{
         if(LoginHelper.login(username, password)){
            return "/index.jsf";
         } else {
-            FacesMessage msg = new FacesMessage("Login error, please try again", "ERROR MSG");
+            FacesMessage msg = new FacesMessage("Login error", "Login error, please try again");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage("loginForm", msg);
             return "/login.jsf";
         }
     }
