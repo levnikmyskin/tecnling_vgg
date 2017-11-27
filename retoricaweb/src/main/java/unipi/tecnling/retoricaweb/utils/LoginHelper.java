@@ -20,9 +20,8 @@ public class LoginHelper {
     public static boolean login(String username, String password){
         try{
             UserModel user = new UserModel(username);
-            String hashedPwd = BCrypt.hashpw(password, BCrypt.gensalt());
 
-            return hashedPwd.equals(user.getPassword());
+            return BCrypt.checkpw(password, user.getPassword());
         } catch(ObjectDoesNotExistException e){
             return false;
         }

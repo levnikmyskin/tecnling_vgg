@@ -29,11 +29,11 @@ public class MongodbHelper {
         int port = Integer.parseInt(configs[4]);  // ServerAddress port must be an int
 
         MongoCredential credentials = MongoCredential.createCredential(user, db, pwd);
-        MongoClientOptions options = MongoClientOptions.builder().sslEnabled(true).build();
 
-        return new MongoClient(new ServerAddress(host, port),
-                Collections.singletonList(credentials),
-                options);
+        return new MongoClient(
+                new ServerAddress(host, port),
+                Collections.singletonList(credentials)
+        );
     }
 
     private String[] getConfigs(){
