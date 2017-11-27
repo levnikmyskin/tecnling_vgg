@@ -24,7 +24,7 @@ Intellij Idea Ultimate Edition
 ### Tomcat configuration for running and debugging project locally:
 * Download Tomcat tar.gz (Linux/Mac) archive under binary distributions from apache website https://tomcat.apache.org/download-80.cgi;
 * Extract the archive somewhere appropriate;
-* In the upper menu of the IDE, click on run -> edit confiurations;
+* In the upper menu of the IDE, click on run -> edit configurations;
 * Click on the + (plus) sign to add a new method and select Tomcat server -> local (if it's not available verify that it is enabled in the plugins settings);
 * On the application server section, click on Configure, then select the extracted tomcat folder as the Tomcat home;
 * In the Open browser section use http://localhost:8080/retoricaweb/index.jsf as a default;
