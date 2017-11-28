@@ -1,6 +1,9 @@
 package unipi.tecnling.retoricaweb;
 
 import com.mongodb.MongoClient;
+import unipi.tecnling.retoricaweb.sessionmodels.SessionManager;
+import unipi.tecnling.retoricaweb.sessionmodels.SessionUser;
+import unipi.tecnling.retoricaweb.utils.AppConstants;
 import unipi.tecnling.retoricaweb.utils.MongodbHelper;
 
 import javax.faces.bean.ManagedBean;
@@ -13,7 +16,10 @@ public class HelloWorld {
     }
 
     public String getMessage() {
-        System.out.println("prova");
+        // testing session
+        SessionUser user = (SessionUser) SessionManager.getInstance(AppConstants.USER_SESSION);
+        if (user != null)
+            return "Welcome " + user.getName() + " " + user.getSurname();
         return "Hello heaven!";
     }
 

@@ -11,9 +11,10 @@ import org.bson.Document;
 import unipi.tecnling.retoricaweb.utils.MongodbHelper;
 
 /**
- * @author alessio
  * Base class for Db modeling. It has to be extended for every model in this package.
  * It deals with a single object from the collection, per instance.
+ *
+ * @author alessio
  */
 
 public class DbModel {

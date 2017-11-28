@@ -41,6 +41,13 @@
             <version>0.3m</version>
         </dependency>
 
+        <!-- Java EE Library -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>retoricaweb</finalName>

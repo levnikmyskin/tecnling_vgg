@@ -1,8 +1,9 @@
 package unipi.tecnling.retoricaweb.exceptions;
 
 /**
- * @author alessio
  * Exception thrown when a MongoDb query returned null
+ *
+ * @author alessio
  */
 
 public class ObjectDoesNotExistException extends Exception{

@@ -10,9 +10,10 @@ import java.io.Serializable;
 
 
 /**
- * @author Alessio
  * ManagedBean to handle login and logout, using {@link LoginHelper} to handle logic
  * It either redirects to the index page or to the login page, showing the error
+ *
+ * @author alessio
  */
 
 @ManagedBean
