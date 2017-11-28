@@ -1,0 +1,5 @@
+Documentation about FacesContext, use to show message to client or to get ExternalContext for session
+https://docs.oracle.com/javaee/6/api/javax/faces/context/FacesContext.html 
+
+Specifically for session
+https://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html#invalidateSession%28%29
