@@ -25,7 +25,7 @@ public class LoginHelper {
             UserModel user = new UserModel(username);
 
             // Store user in session
-            new SessionUser(user.getUsername(), user.getName(), user.getSurname()).saveIntoSession(true);
+            new SessionUser(user.getUsername(), user.getName(), user.getSurname(), user.getRoles()).saveIntoSession(true);
             return BCrypt.checkpw(password, user.getPassword());
         } catch(ObjectDoesNotExistException e){
             return false;

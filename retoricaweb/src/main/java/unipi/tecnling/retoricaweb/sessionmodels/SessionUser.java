@@ -1,5 +1,6 @@
 package unipi.tecnling.retoricaweb.sessionmodels;
 
+import org.bson.Document;
 import unipi.tecnling.retoricaweb.utils.AppConstants;
 import javax.servlet.http.HttpSession;
 
@@ -15,11 +16,13 @@ import javax.servlet.http.HttpSession;
 
 public class SessionUser extends SessionManager{
     private String username, name, surname;
+    private Document roles;
 
-    public SessionUser(String username, String name, String surname){
+    public SessionUser(String username, String name, String surname, Document roles){
         this.username = username;
         this.name = name;
         this.surname = surname;
+        this.roles = roles;
     }
 
     @Override
@@ -45,5 +48,9 @@ public class SessionUser extends SessionManager{
 
     public String getSurname() {
         return surname;
+    }
+
+    public Document getRoles() {
+        return roles;
     }
 }

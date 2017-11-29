@@ -3,11 +3,14 @@ package unipi.tecnling.retoricaweb.dbmodels;
 import org.bson.Document;
 import unipi.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
+import java.util.HashMap;
+
 /**
  * Model to manage users in the db, extends DbModel
  * @see unipi.tecnling.retoricaweb.dbmodels.DbModel
  *
  * @author alessio
+ * @author andrea
  */
 
 public class UserModel extends DbModel{
@@ -15,6 +18,7 @@ public class UserModel extends DbModel{
     private String password;
     private String name;
     private String surname;
+    private Document roles;
 
     public UserModel(String uniqueFieldValue) throws ObjectDoesNotExistException{
         super("users", "username", uniqueFieldValue);
@@ -37,6 +41,12 @@ public class UserModel extends DbModel{
         return surname;
     }
 
+    /**
+     * @return user's permissions in order to verify his actions
+     */
+    public Document getRoles() {
+        return roles;
+    }
 
     private void initUser() throws ObjectDoesNotExistException{
         Document user = this.retrieveFromDb();
@@ -47,6 +57,7 @@ public class UserModel extends DbModel{
         this.password = user.getString("password");
         this.name = user.getString("name");
         this.surname = user.getString("surname");
+        this.roles = (Document) user.get("roles");
     }
 
 
