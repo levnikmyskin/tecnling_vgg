@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
  * @see unipi.tecnling.retoricaweb.sessionmodels.SessionManager
  */
 
+@Deprecated
 public class SessionUser extends SessionManager{
     private String username, name, surname;
     private Document roles;

@@ -1,15 +1,10 @@
 package unipi.tecnling.retoricaweb;
 
-import com.mongodb.MongoClient;
-import org.bson.Document;
-import unipi.tecnling.retoricaweb.sessionmodels.SessionManager;
-import unipi.tecnling.retoricaweb.sessionmodels.SessionUser;
+import unipi.tecnling.retoricaweb.dbmodels.UserModel;
 import unipi.tecnling.retoricaweb.utils.AppConstants;
-import unipi.tecnling.retoricaweb.utils.MongodbHelper;
+import unipi.tecnling.retoricaweb.utils.SessionHelper;
 
 import javax.faces.bean.ManagedBean;
-import java.util.LinkedHashMap;
-import java.util.function.BiConsumer;
 
 @ManagedBean(name="helloWorld", eager=true)
 public class HelloWorld {
@@ -20,7 +15,7 @@ public class HelloWorld {
 
     public String getMessage() {
         // testing session
-        SessionUser user = (SessionUser) SessionManager.getInstance(AppConstants.USER_SESSION);
+        UserModel user = (UserModel) SessionHelper.getInstance(AppConstants.USER_SESSION);
         if (user != null)
             return "Welcome " + user.getName() + " " + user.getSurname();
         return "Hello heaven!";

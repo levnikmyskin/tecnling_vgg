@@ -11,12 +11,13 @@ import java.util.Properties;
 
 
 /**
- * @author Alessio
  *
  * Helper class for connection and management of MongoDb.
  * The instance returned by the connect() method should be used
  * throughout the application. It reads credentials from an external config.properties file
  * to establish the connection.
+ *
+ * @author alessio
  */
 
 public class MongodbHelper {
