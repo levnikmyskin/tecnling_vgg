@@ -1,5 +1,5 @@
-# Tecnologie ling. Unipi, Retorica Web
-## Exam project for "Tecnologie linguistiche per l'estrazione di informazione", Molinari, Pedrotti, Rambelli.
+# EuporiaModules
+## Exam project for Molinari, Pedrotti, Rambelli.
 
 Technologies used:
 * Java SDK, version 1.8 (Java 8)
