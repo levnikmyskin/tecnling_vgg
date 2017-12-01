@@ -1,6 +1,6 @@
-package unipi.tecnling.retoricaweb;
+package euporia.tecnling.retoricaweb;
 
-import unipi.tecnling.retoricaweb.utils.LoginHelper;
+import euporia.tecnling.retoricaweb.utils.LoginHelper;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

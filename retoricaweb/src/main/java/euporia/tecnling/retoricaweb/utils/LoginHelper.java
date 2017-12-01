@@ -1,8 +1,8 @@
-package unipi.tecnling.retoricaweb.utils;
+package euporia.tecnling.retoricaweb.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
-import unipi.tecnling.retoricaweb.dbmodels.UserModel;
-import unipi.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
+import euporia.tecnling.retoricaweb.dbmodels.UserModel;
+import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
 /**
  *

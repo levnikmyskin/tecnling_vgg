@@ -1,8 +1,8 @@
-package unipi.tecnling.retoricaweb;
+package euporia.tecnling.retoricaweb;
 
-import unipi.tecnling.retoricaweb.dbmodels.UserModel;
-import unipi.tecnling.retoricaweb.utils.AppConstants;
-import unipi.tecnling.retoricaweb.utils.SessionHelper;
+import euporia.tecnling.retoricaweb.dbmodels.UserModel;
+import euporia.tecnling.retoricaweb.utils.AppConstants;
+import euporia.tecnling.retoricaweb.utils.SessionHelper;
 
 import javax.faces.bean.ManagedBean;
 

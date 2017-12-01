@@ -1,4 +1,4 @@
-package unipi.tecnling.retoricaweb.utils;
+package euporia.tecnling.retoricaweb.utils;
 
 /**
  * Constants values which should be used throughout the application

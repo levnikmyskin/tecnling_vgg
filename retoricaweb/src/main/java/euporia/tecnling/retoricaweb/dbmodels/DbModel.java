@@ -1,4 +1,4 @@
-package unipi.tecnling.retoricaweb.dbmodels;
+package euporia.tecnling.retoricaweb.dbmodels;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -7,8 +7,8 @@ import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 
+import euporia.tecnling.retoricaweb.utils.MongodbHelper;
 import org.bson.Document;
-import unipi.tecnling.retoricaweb.utils.MongodbHelper;
 
 /**
  * Base class for Db modeling. It has to be extended for every model in this package.

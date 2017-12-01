@@ -1,13 +1,12 @@
-package unipi.tecnling.retoricaweb.dbmodels;
+package euporia.tecnling.retoricaweb.dbmodels;
 
 import org.bson.Document;
-import unipi.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
+import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
-import java.util.HashMap;
 
 /**
  * Model to manage users in the db, extends DbModel
- * @see unipi.tecnling.retoricaweb.dbmodels.DbModel
+ * @see DbModel
  *
  * @author alessio
  * @author andrea

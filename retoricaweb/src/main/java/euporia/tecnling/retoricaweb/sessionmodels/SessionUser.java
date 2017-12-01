@@ -1,7 +1,7 @@
-package unipi.tecnling.retoricaweb.sessionmodels;
+package euporia.tecnling.retoricaweb.sessionmodels;
 
 import org.bson.Document;
-import unipi.tecnling.retoricaweb.utils.AppConstants;
+import euporia.tecnling.retoricaweb.utils.AppConstants;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
  * users from session (to achieve DRY https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
  *
  * @author alessio
- * @see unipi.tecnling.retoricaweb.sessionmodels.SessionManager
+ * @see SessionManager
  */
 
 @Deprecated
@@ -28,13 +28,13 @@ public class SessionUser extends SessionManager{
 
     @Override
     public void saveIntoSession(boolean create){
-        HttpSession session = SessionManager.getSession(create);
+        HttpSession session = getSession(create);
         session.setAttribute(AppConstants.USER_SESSION, this);
     }
 
     @Override
     public void removeFromSession() {
-        SessionManager.getSession(false).removeAttribute(AppConstants.USER_SESSION);
+        getSession(false).removeAttribute(AppConstants.USER_SESSION);
     }
 
     /* Getters */

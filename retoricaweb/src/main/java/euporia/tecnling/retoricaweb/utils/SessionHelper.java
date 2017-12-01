@@ -1,4 +1,4 @@
-package unipi.tecnling.retoricaweb.utils;
+package euporia.tecnling.retoricaweb.utils;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;

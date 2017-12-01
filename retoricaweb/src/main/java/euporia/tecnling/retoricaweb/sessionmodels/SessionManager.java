@@ -1,4 +1,4 @@
-package unipi.tecnling.retoricaweb.sessionmodels;
+package euporia.tecnling.retoricaweb.sessionmodels;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;

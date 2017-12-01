@@ -1,9 +1,8 @@
-package unipi.tecnling.retoricaweb.utils;
+package euporia.tecnling.retoricaweb.utils;
 
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.mongodb.MongoCredential;
-import com.mongodb.MongoClientOptions;
 
 import java.io.*;
 import java.util.Collections;

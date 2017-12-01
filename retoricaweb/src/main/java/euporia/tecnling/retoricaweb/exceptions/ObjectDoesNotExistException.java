@@ -1,4 +1,4 @@
-package unipi.tecnling.retoricaweb.exceptions;
+package euporia.tecnling.retoricaweb.exceptions;
 
 /**
  * Exception thrown when a MongoDb query returned null
