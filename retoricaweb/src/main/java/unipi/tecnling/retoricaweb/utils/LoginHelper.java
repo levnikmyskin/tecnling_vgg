@@ -22,9 +22,13 @@ public class LoginHelper {
         try{
             UserModel user = new UserModel(username);
 
-            // Store user in session
-            SessionHelper.getSession(true).setAttribute(AppConstants.USER_SESSION, user);
-            return BCrypt.checkpw(password, user.getPassword());
+            if (BCrypt.checkpw(password, user.getPassword())) {
+                // Store user in session
+                SessionHelper.getSession(true).setAttribute(AppConstants.USER_SESSION, user);
+                return true;
+            }
+
+            return false;
         } catch(ObjectDoesNotExistException e){
             return false;
         }
