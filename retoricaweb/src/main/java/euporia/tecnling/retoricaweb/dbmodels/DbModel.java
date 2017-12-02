@@ -10,6 +10,8 @@ import static com.mongodb.client.model.Updates.set;
 import euporia.tecnling.retoricaweb.utils.MongodbHelper;
 import org.bson.Document;
 
+import java.util.HashMap;
+
 /**
  * Base class for Db modeling. It has to be extended for every model in this package.
  * It deals with a single object from the collection, per instance.
@@ -17,7 +19,7 @@ import org.bson.Document;
  * @author alessio
  */
 
-public class DbModel {
+public abstract class DbModel {
 
     private MongoDatabase database;
     private MongoCollection<Document> collection;
@@ -31,6 +33,8 @@ public class DbModel {
         this.uniqueFieldName = uniqueFieldName;
         this.uniqueFieldValue = uniqueFieldValue;
     }
+
+    public abstract boolean createNewEntry(HashMap<String, Object> fields);
 
     /**
      * Retrieve a single object from the collection, using the specified
@@ -57,11 +61,12 @@ public class DbModel {
         return true;
     }
 
+
     public MongoDatabase getDatabase() {
         return database;
     }
 
-    private MongoCollection<Document> getCollection() {
+    MongoCollection<Document> getCollection() {
         return collection;
     }
 

@@ -3,6 +3,8 @@ package euporia.tecnling.retoricaweb.dbmodels;
 import org.bson.Document;
 import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
+import java.util.HashMap;
+
 
 /**
  * Model to manage users in the db, extends DbModel
@@ -45,6 +47,11 @@ public class UserModel extends DbModel{
      */
     public Document getRoles() {
         return roles;
+    }
+
+    @Override
+    public boolean createNewEntry(HashMap<String, Object> fields){
+        return false;
     }
 
     private void initUser() throws ObjectDoesNotExistException{
