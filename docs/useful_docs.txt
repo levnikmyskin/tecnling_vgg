@@ -3,3 +3,14 @@ https://docs.oracle.com/javaee/6/api/javax/faces/context/FacesContext.html
 
 Specifically for session
 https://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html#invalidateSession%28%29
+
+Useful tutorial on JSF
+http://www.coreservlets.com/JSF-Tutorial/jsf2/
+
+
+"Official" pages for JSF 
+https://javaee.github.io/javaserverfaces-spec/
+https://jcp.org/en/jsr/detail?id=372
+
+Html related stuff
+https://docs.oracle.com/javaee/7/javaserver-faces-2-2/vdldocs-facelets/overview-summary.html

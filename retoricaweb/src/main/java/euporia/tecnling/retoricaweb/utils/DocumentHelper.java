@@ -21,7 +21,7 @@ public class DocumentHelper {
     public static boolean saveDocument(String text){
 
         Document lines = getLines(text);
-
+        return true;
     }
 
     /**
@@ -51,11 +51,11 @@ public class DocumentHelper {
                     lineArray.add(stringTokenizer.nextToken());
                 }
 
-                // Appends to Document subLine key: line number, value: line words
+                // Appends to Document subLine:
+                // key: line_number; value: line_words
                 subLines.append(String.valueOf(i), lineArray);
                 i++;
             }
-
             return new Document("lines", subLines);
         } catch(IOException e){
             return null;
