@@ -28,7 +28,7 @@ Intellij Idea Ultimate Edition
 * In the upper menu of the IDE, click on run -> edit configurations;
 * Click on the + (plus) sign to add a new method and select GlassFish server -> local (if it's not available verify that it is enabled in the plugins settings, or look for it in the Defaults section);
 * On the application server section, click on Configure, then select the extracted GlassFish folder as the GlassFish home;
-* In the Open browser section use http://localhost:8080/retoricaweb/index.jsf as a default;
+* In the Open browser section use http://localhost:8080/retoricaweb/login.jsf as a default;
 * In deployment tab, make sure there is the retoricaweb:war under "Deploy at the server startup" (if you cannot find it, try adding it or simply click on apply -> Ok and then reopen the configuration window; Intellij should give you an error with a "Fix" button, click it;
 * In deployment tab, check "use custom context root" and type "/retoricaweb" -> apply -> ok;
 * Try running the project
