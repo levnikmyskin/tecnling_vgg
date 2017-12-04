@@ -51,7 +51,7 @@ public class UserModel extends DbModel{
 
     // This webapp is not allowed to create users
     @Override
-    public boolean createNewEntry(HashMap<String, Object> fields){
+    public boolean createNewEntry(){
         return false;
     }
 

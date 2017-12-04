@@ -14,36 +14,51 @@
     <h1>Document uploading</h1>
     <h3>Before submitting any document, please verify it is not already available in our database.</h3>
     <h5>Documents shall be submitted in plain text (txt) format ONLY</h5>
+    <h:message for="docUploadForm" class="error-messages"/>
     <h:form id="docUploadForm" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="docAuthor">Author:</label>
-            <h:inputText id="docAuthor" value="#{docUploadBean.docAuthor}" a:required="true" required="true"/>
+        <div class="form-wrapper">
+            <div class="form-group">
+                <label for="docTitle">Title:</label>
+                <h:inputText id="docTitle" value="#{docUploadBean.docTitle}" a:required="true" required="true"/>
+            </div>
+
+            <div class="form-group">
+                <label for="docAuthor">Author:</label>
+                <h:inputText id="docAuthor" value="#{docUploadBean.docAuthor}" a:required="true" required="true"/>
+            </div>
+
+            <div class="form-group">
+                <label for="docLanguage">Language:</label>
+                <h:inputText id="docLanguage" value="#{docUploadBean.docLang}" a:required="true" required="true"/>
+            </div>
+
+            <div class="form-group">
+                <label for="compDate">Composition date:</label>
+                <h:inputText id="compDate" value="#{docUploadBean.docCompDate}" label="Composition date"
+                             a:placeholder="1842" a:required="true" required="true">
+                    <f:convertDateTime pattern="yyyy"/>
+                </h:inputText>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="compDate">Composition date:</label>
-            <h:inputText id="compDate" value="#{docUploadBean.docCompDate}" label="Composition date"
-                         a:placeholder="20/4/1842" a:required="true" required="true">
-                <f:convertDateTime pattern="dd/MM/yyyy"/>
-            </h:inputText>
-        </div>
+        <div class="form-wrapper">
+            <div class="form-group">
+                <label for="editionName">Edition:</label>
+                <h:inputText id="editionName" value="#{docUploadBean.editionName}" a:required="true" required="true"/>
+            </div>
 
-        <div class="form-group">
-            <label for="editionName">Edition:</label>
-            <h:inputText id="editionName" value="#{docUploadBean.editionName}" a:required="true" required="true"/>
-        </div>
+            <div class="form-group">
+                <label for="editionType">Edition type:</label>
+                <h:inputText id="editionType" value="#{docUploadBean.editionType}" a:placeholder="eg. Critical edition" a:required="true" required="true"/>
+            </div>
 
-        <div class="form-group">
-            <label for="editionType">Edition type:</label>
-            <h:inputText id="editionType" value="#{docUploadBean.editionType}" a:placeholder="eg. Critical edition" a:required="true" required="true"/>
-        </div>
+            <div class="form-group">
+                <label for="newdoc">Document:</label>
+                <h:inputFile id="newdoc" value="#{docUploadBean.file}" a:required="true" required="true"/>
+            </div>
 
-        <div class="form-group">
-            <label for="newdoc">Document:</label>
-            <h:inputFile id="newdoc" value="#{docUploadBean.file}" a:required="true" required="true"/>
+            <h:commandButton class="login-button" style="width: 30%;" value="Upload" action="#{docUploadBean.uploadDocument()}"/>
         </div>
-
-        <h:commandButton class="login-button" value="Upload" action="#{docUploadBean.uploadDocument()}"/>
     </h:form>
 </h:body>
 </html>

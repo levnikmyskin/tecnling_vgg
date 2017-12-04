@@ -34,7 +34,7 @@ public abstract class DbModel {
         this.uniqueFieldValue = uniqueFieldValue;
     }
 
-    public abstract boolean createNewEntry(HashMap<String, Object> fields);
+    public abstract boolean createNewEntry();
 
     /**
      * Retrieve a single object from the collection, using the specified

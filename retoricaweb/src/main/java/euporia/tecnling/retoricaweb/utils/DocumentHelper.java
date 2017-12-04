@@ -1,12 +1,19 @@
 package euporia.tecnling.retoricaweb.utils;
 
+import euporia.tecnling.retoricaweb.dbmodels.DocumentModel;
+import euporia.tecnling.retoricaweb.dbmodels.UserModel;
 import org.bson.Document;
 
+import javax.servlet.http.Part;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.StringTokenizer;
+
+import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 
 /**
  *  Helper class to manage document upload and store it into database
@@ -15,50 +22,62 @@ import java.util.StringTokenizer;
  *  @author alessio
  */
 
-// TODO to be complited
+/*
+  TODO PLEASE DO NOT EDIT HERE, WE DO NOT NEED TO STORE TEXT IN DB
+  I'LL DO IT ASAP
+  Alessio
+ */
 public class DocumentHelper {
 
-    public static boolean saveDocument(String text){
+    public static boolean saveDocument(Part file, HashMap<String, Object> fields){
+        Document wordsArray = getLines(file);
+        DocumentModel dmodel = initDocument(fields);
 
-        Document lines = getLines(text);
-        return true;
+        // add lines to the DocumentModel
+        dmodel.setWordsArray(wordsArray);
+        return dmodel.createNewEntry();
     }
 
     /**
      * It tokenizes text and returns document's instance related to text lines.
      * document structure:
-     * Document lines: Document subLines{
-     *     1: [word0, word1, .. wordN],
-     *     2: [word0, word1, .. wordN],
-     *     3: ....
-     * }
+     * Document lines: [word1, word2, word3, ... , wordN]
      */
 
-    private static Document getLines(String text){
+    private static Document getLines(Part file){
         try{
-            BufferedReader br = new BufferedReader(new FileReader(text));
+            BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
             String line;
-            Document subLines = new Document();
-            int i = 0;
-            while ((line = br.readLine()) != null){
-                ArrayList<String> lineArray = new ArrayList<String>();
+            ArrayList<String> wordsArray = new ArrayList<String>();
+            for (int i=0; (line = br.readLine()) != null; i++){
 
                 // Sets ", '" as delimiters to the tokenization
                 StringTokenizer stringTokenizer = new StringTokenizer(line, ", '");
 
                 // Appends tokens to list lineArray
                 while (stringTokenizer.hasMoreTokens()){
-                    lineArray.add(stringTokenizer.nextToken());
+                    // TODO DISCARD EMPTY LINES ?
+                    wordsArray.add(stringTokenizer.nextToken());
                 }
-
-                // Appends to Document subLine:
-                // key: line_number; value: line_words
-                subLines.append(String.valueOf(i), lineArray);
-                i++;
             }
-            return new Document("lines", subLines);
+            return new Document("wordsArray", wordsArray);
         } catch(IOException e){
             return null;
         }
+    }
+
+    // Initializes document, without tags and lines
+    private static DocumentModel initDocument(HashMap<String, Object> fields){
+        DocumentModel dmodel = new DocumentModel(null);
+        dmodel.setTitle((String) fields.get(DOC_TITLE));
+        dmodel.setAuthor((String) fields.get(DOC_AUTHOR));
+        dmodel.setLanguage((String) fields.get(DOC_LANG));
+        dmodel.setEdition((String) fields.get(DOC_ED_NAME));
+        dmodel.setEditionType((String) fields.get(DOC_ED_TYPE));
+        dmodel.setCompositionDate((Date) fields.get(DOC_DATE));
+
+        String username = ((UserModel) SessionHelper.getInstance(AppConstants.USER_SESSION)).getUsername();
+        dmodel.setUploadedBy(username);
+        return dmodel;
     }
 }

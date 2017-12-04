@@ -28,4 +28,9 @@ body {
   display: inline-block;
   font-size: 16px; }
 
-/*# sourceMappingURL=main.css.map*/
+.form-wrapper {
+  display: inline-flex;
+  width: 35%;
+  flex-direction: column; }
+
+/*# sourceMappingURL=main.css.map */

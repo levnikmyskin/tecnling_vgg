@@ -2,7 +2,9 @@ package euporia.tecnling.retoricaweb.dbmodels;
 
 import org.bson.Document;
 
-import java.util.HashMap;
+import java.util.Date;
+
+import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 
 /**
  * Model to save and update a document into the database.
@@ -13,27 +15,104 @@ import java.util.HashMap;
  */
 
 public class DocumentModel extends DbModel{
-    private Document lines;
+    private Document wordsArray;
     private Document tags;
+    private String title, author, language, edition, editionType, uploadedBy;
+    private Date compositionDate;
 
     public DocumentModel(String uniqueFieldValue){
         super("documents", "title", uniqueFieldValue);
     }
 
-    /**
-     * @param fields it needs to contain author, compositionDate, language, edition and lines
-     */
 
     @Override
-    public boolean createNewEntry(HashMap<String, Object> fields){
-        Document document = new Document("title", fields.get("title"))
-                .append("author", fields.get("author"))
-                .append("compositionDate", fields.get("compositionDate"))
-                .append("language", fields.get("language"))
-                .append("edition", fields.get("edition"))
-                .append("lines", fields.get("lines"));
+    public boolean createNewEntry(){
+        Document document = new Document("title", title)
+                .append(DOC_AUTHOR, author)
+                .append(DOC_DATE, compositionDate)
+                .append(DOC_LANG, language)
+                .append(DOC_ED_NAME, edition)
+                .append(DOC_ED_TYPE, editionType)
+                .append(DOC_WORDS, wordsArray)
+                .append(DOC_UPD, uploadedBy);
 
         getCollection().insertOne(document);
         return true;
+    }
+
+    /* GETTERS */
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public String getEditionType() {
+        return editionType;
+    }
+
+    public Date getCompositionDate() {
+        return compositionDate;
+    }
+
+    public Document getWordsArray() {
+        return wordsArray;
+    }
+
+    public Document getTags() {
+        return tags;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getUploadedBy() {
+        return uploadedBy;
+    }
+
+    /* SETTERS */
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public void setEditionType(String editionType) {
+        this.editionType = editionType;
+    }
+
+    public void setCompositionDate(Date compositionDate) {
+        this.compositionDate = compositionDate;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setWordsArray(Document wordsArray) {
+        this.wordsArray = wordsArray;
+    }
+
+    public void setTags(Document tags) {
+        this.tags = tags;
+    }
+
+    public void setUploadedBy(String uploadedBy) {
+        this.uploadedBy = uploadedBy;
     }
 }

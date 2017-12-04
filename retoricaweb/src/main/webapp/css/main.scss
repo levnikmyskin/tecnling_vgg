@@ -35,3 +35,10 @@ body{
   display: inline-block;
   font-size: 16px;
 }
+
+
+.form-wrapper{
+  display: inline-flex;
+  width: 35%;
+  flex-direction: column;
+}
