@@ -23,7 +23,7 @@ Intellij Idea Ultimate Edition
 * If you cannot build succesfully, try installing Maven on your operating system.
 
 ### GlassFish configuration for running and debugging project locally:
-* Download GlassFish zip from javaee.github.io website https://javaee.github.io/glassfish/download 
+* Download GlassFish zip from javaee.github.io website http://download.oracle.com/glassfish/5.0/release/glassfish-5.0-web.zip 
 * Extract the archive somewhere appropriate;
 * In the upper menu of the IDE, click on run -> edit configurations;
 * Click on the + (plus) sign to add a new method and select GlassFish server -> local (if it's not available verify that it is enabled in the plugins settings, or look for it in the Defaults section);
