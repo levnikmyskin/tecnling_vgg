@@ -3,9 +3,10 @@
 
 Technologies used:
 * Java SDK, version 1.8 (Java 8)
-* Java Server Faces with [ICEFaces](http://www.icesoft.org/java/home.jsf)
+* Java EE 7
+* Java Server Faces 2.2
 * [ANTLR](http://www.antlr.org/) 
-* Deployed on Tomcat under Apache under Nginx as a proxy
+* Deployed on GlassFish under Apache under Nginx as a proxy
 
 IDE:
 Intellij Idea Ultimate Edition
@@ -21,14 +22,15 @@ Intellij Idea Ultimate Edition
 * Build the project, you should get a retoricaweb.war file in the target directory;
 * If you cannot build succesfully, try installing Maven on your operating system.
 
-### Tomcat configuration for running and debugging project locally:
-* Download Tomcat tar.gz (Linux/Mac) archive under binary distributions from apache website https://tomcat.apache.org/download-80.cgi;
+### GlassFish configuration for running and debugging project locally:
+* Download GlassFish zip from javaee.github.io website https://javaee.github.io/glassfish/download 
 * Extract the archive somewhere appropriate;
 * In the upper menu of the IDE, click on run -> edit configurations;
-* Click on the + (plus) sign to add a new method and select Tomcat server -> local (if it's not available verify that it is enabled in the plugins settings);
-* On the application server section, click on Configure, then select the extracted tomcat folder as the Tomcat home;
+* Click on the + (plus) sign to add a new method and select GlassFish server -> local (if it's not available verify that it is enabled in the plugins settings, or look for it in the Defaults section);
+* On the application server section, click on Configure, then select the extracted GlassFish folder as the GlassFish home;
 * In the Open browser section use http://localhost:8080/retoricaweb/index.jsf as a default;
-* On deployment tab, make sure there is the retoricaweb:war under "Deploy at the server startup" (if you cannot find it, try adding it or simply click on apply -> Ok and then reopen the configuration window; Intellij should give you an error with a "Fix" button, click it;
+* In deployment tab, make sure there is the retoricaweb:war under "Deploy at the server startup" (if you cannot find it, try adding it or simply click on apply -> Ok and then reopen the configuration window; Intellij should give you an error with a "Fix" button, click it;
+* In deployment tab, check "use custom context root" and type "/retoricaweb" -> apply -> ok;
 * Try running the project
 
 
