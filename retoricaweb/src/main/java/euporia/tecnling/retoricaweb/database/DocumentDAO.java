@@ -1,10 +1,11 @@
-package euporia.tecnling.retoricaweb.dbmodels;
+package euporia.tecnling.retoricaweb.database;
 
 import org.bson.Document;
 
 import java.util.Date;
 
 import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
+import euporia.tecnling.retoricaweb.database.DbModel.Writable;
 
 /**
  * Model to save and update a document into the database.
@@ -14,19 +15,18 @@ import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
  * @author alessio
  */
 
-public class DocumentModel extends DbModel{
+public class DocumentDAO extends DbModel implements Writable{
     private Document wordsArray;
     private Document tags;
     private String title, author, language, edition, editionType, uploadedBy;
     private Date compositionDate;
 
-    public DocumentModel(String uniqueFieldValue){
+    public DocumentDAO(String uniqueFieldValue){
         super("documents", "title", uniqueFieldValue);
     }
 
 
-    @Override
-    public boolean createNewEntry(){
+    public boolean write(){
         Document document = new Document("title", title)
                 .append(DOC_AUTHOR, author)
                 .append(DOC_DATE, compositionDate)

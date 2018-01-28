@@ -1,9 +1,7 @@
-package euporia.tecnling.retoricaweb.dbmodels;
+package euporia.tecnling.retoricaweb.database;
 
 import org.bson.Document;
 import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
-
-import java.util.HashMap;
 
 
 /**
@@ -14,14 +12,14 @@ import java.util.HashMap;
  * @author andrea
  */
 
-public class UserModel extends DbModel{
+public class UserDAO extends DbModel{
     private String username;
     private String password;
     private String name;
     private String surname;
     private Document roles;
 
-    public UserModel(String uniqueFieldValue) throws ObjectDoesNotExistException{
+    public UserDAO(String uniqueFieldValue) throws ObjectDoesNotExistException{
         super("users", "username", uniqueFieldValue);
         initUser();
     }
@@ -47,12 +45,6 @@ public class UserModel extends DbModel{
      */
     public Document getRoles() {
         return roles;
-    }
-
-    // This webapp is not allowed to create users
-    @Override
-    public boolean createNewEntry(){
-        return false;
     }
 
     private void initUser() throws ObjectDoesNotExistException{

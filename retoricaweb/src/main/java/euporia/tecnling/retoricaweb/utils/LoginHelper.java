@@ -1,7 +1,7 @@
 package euporia.tecnling.retoricaweb.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
-import euporia.tecnling.retoricaweb.dbmodels.UserModel;
+import euporia.tecnling.retoricaweb.database.UserDAO;
 import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
 /**
@@ -20,7 +20,7 @@ public class LoginHelper {
 
     public static boolean login(String username, String password){
         try{
-            UserModel user = new UserModel(username);
+            UserDAO user = new UserDAO(username);
 
             if (BCrypt.checkpw(password, user.getPassword())) {
                 // Store user in session

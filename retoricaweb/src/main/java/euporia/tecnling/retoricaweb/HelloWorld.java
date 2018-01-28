@@ -1,6 +1,6 @@
 package euporia.tecnling.retoricaweb;
 
-import euporia.tecnling.retoricaweb.dbmodels.UserModel;
+import euporia.tecnling.retoricaweb.database.UserDAO;
 import euporia.tecnling.retoricaweb.utils.AppConstants;
 import euporia.tecnling.retoricaweb.utils.SessionHelper;
 
@@ -15,7 +15,7 @@ public class HelloWorld {
 
     public String getMessage() {
         // testing session
-        UserModel user = (UserModel) SessionHelper.getInstance(AppConstants.USER_SESSION);
+        UserDAO user = (UserDAO) SessionHelper.getInstance(AppConstants.USER_SESSION);
         if (user != null)
             return "Welcome " + user.getName() + " " + user.getSurname();
         return "Hello heaven!";

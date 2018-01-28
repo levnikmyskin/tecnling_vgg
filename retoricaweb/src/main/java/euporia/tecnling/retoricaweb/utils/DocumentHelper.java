@@ -1,7 +1,7 @@
 package euporia.tecnling.retoricaweb.utils;
 
-import euporia.tecnling.retoricaweb.dbmodels.DocumentModel;
-import euporia.tecnling.retoricaweb.dbmodels.UserModel;
+import euporia.tecnling.retoricaweb.database.DocumentDAO;
+import euporia.tecnling.retoricaweb.database.UserDAO;
 import org.bson.Document;
 
 import javax.servlet.http.Part;
@@ -31,9 +31,9 @@ public class DocumentHelper {
 
     public static boolean saveDocument(Part file, HashMap<String, Object> fields){
         Document wordsArray = getLines(file);
-        DocumentModel dmodel = initDocument(fields);
+        DocumentDAO dmodel = initDocument(fields);
 
-        // add lines to the DocumentModel
+        // add lines to the DocumentDAO
         dmodel.setWordsArray(wordsArray);
         return dmodel.createNewEntry();
     }
@@ -67,8 +67,8 @@ public class DocumentHelper {
     }
 
     // Initializes document, without tags and lines
-    private static DocumentModel initDocument(HashMap<String, Object> fields){
-        DocumentModel dmodel = new DocumentModel(null);
+    private static DocumentDAO initDocument(HashMap<String, Object> fields){
+        DocumentDAO dmodel = new DocumentDAO(null);
         dmodel.setTitle((String) fields.get(DOC_TITLE));
         dmodel.setAuthor((String) fields.get(DOC_AUTHOR));
         dmodel.setLanguage((String) fields.get(DOC_LANG));
@@ -76,7 +76,7 @@ public class DocumentHelper {
         dmodel.setEditionType((String) fields.get(DOC_ED_TYPE));
         dmodel.setCompositionDate((Date) fields.get(DOC_DATE));
 
-        String username = ((UserModel) SessionHelper.getInstance(AppConstants.USER_SESSION)).getUsername();
+        String username = ((UserDAO) SessionHelper.getInstance(AppConstants.USER_SESSION)).getUsername();
         dmodel.setUploadedBy(username);
         return dmodel;
     }

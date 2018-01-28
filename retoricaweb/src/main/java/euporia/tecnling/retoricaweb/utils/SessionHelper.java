@@ -15,7 +15,7 @@ public class SessionHelper {
 
     /**
      * Return an object stored in the session, passing its AppConstants defined name. Cast the returned object
-     * to your desired class. Eg. (UserModel) SessionHelper.getInstance(AppConstants.USER_SESSION);
+     * to your desired class. Eg. (UserDAO) SessionHelper.getInstance(AppConstants.USER_SESSION);
      * @param SESSION_ATTRIBUTE_NAME Name of the object stored in session, taken from AppConstants
      * @return An instance of Object, which should be casted to an actual model class
      */
