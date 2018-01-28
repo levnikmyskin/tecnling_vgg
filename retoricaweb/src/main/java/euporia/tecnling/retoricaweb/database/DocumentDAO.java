@@ -25,6 +25,9 @@ public class DocumentDAO extends DbModel implements Writable{
         super("documents", "title", uniqueFieldValue);
     }
 
+    private static DocumentDAO fromFormData(Builder builder){
+        return initializeFields(builder);
+    }
 
     public boolean write(){
         Document document = new Document("title", title)
@@ -78,41 +81,69 @@ public class DocumentDAO extends DbModel implements Writable{
         return uploadedBy;
     }
 
-    /* SETTERS */
+    private static DocumentDAO initializeFields(Builder builder){
+        DocumentDAO documentDao = new DocumentDAO(null);
+        documentDao.title = builder.title;
+        documentDao.author = builder.author;
+        documentDao.language = builder.language;
+        documentDao.edition = builder.edition;
+        documentDao.editionType = builder.editionType;
+        documentDao.uploadedBy = builder.uploadedBy;
+        documentDao.tags = builder.tags;
+        documentDao.compositionDate = builder.compositionDate;
 
-    public void setAuthor(String author) {
-        this.author = author;
+        return documentDao;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public static class Builder{
+        private Document wordsArray;
+        private Document tags;
+        private String title, author, language, edition, editionType, uploadedBy;
+        private Date compositionDate;
+
+        public Builder title(String title){
+            this.title = title;
+            return this;
+        }
+
+        public Builder author(String author){
+            this.author = author;
+            return this;
+        }
+
+        public Builder language(String language){
+            this.language = language;
+            return this;
+        }
+
+        public Builder edition(String edition){
+            this.edition = edition;
+            return this;
+        }
+
+        public Builder editionType(String editionType){
+            this.editionType = editionType;
+            return this;
+        }
+
+        public Builder uploadedBy(String uploadedBy){
+            this.uploadedBy = uploadedBy;
+            return this;
+        }
+
+        public Builder compositionDate(Date compositionDate){
+            this.compositionDate = compositionDate;
+            return this;
+        }
+
+        public Builder tags(Document tags){
+            this.tags = tags;
+            return this;
+        }
+
+        public DocumentDAO build(){
+            return fromFormData(this);
+        }
     }
 
-    public void setEdition(String edition) {
-        this.edition = edition;
-    }
-
-    public void setEditionType(String editionType) {
-        this.editionType = editionType;
-    }
-
-    public void setCompositionDate(Date compositionDate) {
-        this.compositionDate = compositionDate;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public void setWordsArray(Document wordsArray) {
-        this.wordsArray = wordsArray;
-    }
-
-    public void setTags(Document tags) {
-        this.tags = tags;
-    }
-
-    public void setUploadedBy(String uploadedBy) {
-        this.uploadedBy = uploadedBy;
-    }
 }

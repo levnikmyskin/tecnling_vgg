@@ -30,54 +30,49 @@ import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 public class DocumentHelper {
 
     public static boolean saveDocument(Part file, HashMap<String, Object> fields){
-        Document wordsArray = getLines(file);
-        DocumentDAO dmodel = initDocument(fields);
-
-        // add lines to the DocumentDAO
-        dmodel.setWordsArray(wordsArray);
-        return dmodel.createNewEntry();
+        boolean succesfully_split = splitDocument(file);
+        if (succesfully_split) {
+            DocumentDAO dmodel = initDocument(fields);
+            return dmodel.write();
+        }
+        return false;
     }
 
-    /**
-     * It tokenizes text and returns document's instance related to text lines.
-     * document structure:
-     * Document lines: [word1, word2, word3, ... , wordN]
-     */
-
-    private static Document getLines(Part file){
+    private static boolean splitDocument(Part file){
         try{
+            int lineCounter = 0;
             BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
             String line;
-            ArrayList<String> wordsArray = new ArrayList<String>();
-            for (int i=0; (line = br.readLine()) != null; i++){
 
-                // Sets ", '" as delimiters to the tokenization
-                StringTokenizer stringTokenizer = new StringTokenizer(line, ", '");
 
-                // Appends tokens to list lineArray
-                while (stringTokenizer.hasMoreTokens()){
-                    // TODO DISCARD EMPTY LINES ?
-                    wordsArray.add(stringTokenizer.nextToken());
+            while((line = br.readLine()) != null){
+                if (lineCounter < 50) {
+                    manageTextLine(line, lineCounter);
+                    lineCounter++;
+                } else{
+                    lineCounter = 0;
                 }
             }
-            return new Document("wordsArray", wordsArray);
+            return true;
         } catch(IOException e){
-            return null;
+            return false;
         }
+    }
+
+    private static void manageTextLine(String line, int lineCounter){
+
     }
 
     // Initializes document, without tags and lines
     private static DocumentDAO initDocument(HashMap<String, Object> fields){
-        DocumentDAO dmodel = new DocumentDAO(null);
-        dmodel.setTitle((String) fields.get(DOC_TITLE));
-        dmodel.setAuthor((String) fields.get(DOC_AUTHOR));
-        dmodel.setLanguage((String) fields.get(DOC_LANG));
-        dmodel.setEdition((String) fields.get(DOC_ED_NAME));
-        dmodel.setEditionType((String) fields.get(DOC_ED_TYPE));
-        dmodel.setCompositionDate((Date) fields.get(DOC_DATE));
-
-        String username = ((UserDAO) SessionHelper.getInstance(AppConstants.USER_SESSION)).getUsername();
-        dmodel.setUploadedBy(username);
-        return dmodel;
+        return new DocumentDAO.Builder()
+                .author((String) fields.get("author"))
+                .title((String) fields.get("title"))
+                .language((String) fields.get("language"))
+                .edition((String) fields.get("edition"))
+                .editionType((String) fields.get("editionType"))
+                .compositionDate((Date) fields.get("compositionDate"))
+                .uploadedBy((String) fields.get("uploadedBy"))
+                .build();
     }
 }

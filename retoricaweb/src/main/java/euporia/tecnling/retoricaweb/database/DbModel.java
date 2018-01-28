@@ -31,8 +31,18 @@ public abstract class DbModel {
     private MongoCollection<Document> collection;
     private String uniqueFieldName, uniqueFieldValue;
 
-    // Keep access private to package
+    /**
+     * Think of the uniqueFields members as the key and value of
+     * an HashMap: every DAO manages one row at a time, hence the need for a
+     * primary key identifying this row uniquely. From the perspective of
+     * a class outside of this package, the only argument needed is actually
+     * the uniqueFieldValue
+     * @param collection collection (table) name as defined on the db
+     * @param uniqueFieldName Primary key name
+     * @param uniqueFieldValue Primary key value
+     */
     DbModel(String collection, String uniqueFieldName, String uniqueFieldValue){
+        // Keep access private to package
         MongoClient mongoClient = new MongodbHelper().connect();
         this.database = mongoClient.getDatabase("retoricaweb");
         this.collection = this.database.getCollection(collection);
@@ -75,3 +85,5 @@ public abstract class DbModel {
     }
 
 }
+
+
