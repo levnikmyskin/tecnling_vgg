@@ -19,6 +19,8 @@ public final class AppConstants {
     public static final String DOC_UPD = "docUploader";
     public static final String DOC_WORDS = "docWords";
 
+    public static final String DOCUMENT_DIRECTORY = "/home/alessio/euporia/documents";
+
     // Prevent instantiating
     private AppConstants(){}
 

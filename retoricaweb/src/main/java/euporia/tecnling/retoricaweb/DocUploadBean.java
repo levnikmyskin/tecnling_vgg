@@ -1,19 +1,16 @@
 package euporia.tecnling.retoricaweb;
 
-import euporia.tecnling.retoricaweb.utils.AppConstants;
-import euporia.tecnling.retoricaweb.utils.DocumentHelper;
+import euporia.tecnling.retoricaweb.utils.DocumentUploadHelper;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
+import java.io.IOException;
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.HashMap;
-
-
-import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 
 
 @ManagedBean
@@ -23,7 +20,7 @@ public class DocUploadBean implements Serializable{
     private String docTitle;
     private String docAuthor;
     private String docLang;
-    private Date docCompDate;
+    private String docYear;
     private String editionName;
     private String editionType;
     private Part file;
@@ -31,17 +28,13 @@ public class DocUploadBean implements Serializable{
 
 
     public String uploadDocument(){
-        HashMap<String, Object> fields = new HashMap<String, Object>();
-        fields.put(DOC_TITLE, docTitle);
-        fields.put(DOC_AUTHOR, docAuthor);
-        fields.put(DOC_LANG, docLang);
-        fields.put(DOC_DATE, docCompDate);
-        fields.put(DOC_ED_NAME, editionName);
-        fields.put(DOC_ED_TYPE, editionType);
+        try{
+            DocumentUploadHelper documentUploadHelper = new DocumentUploadHelper(docAuthor, docTitle, docLang, editionName,
+                    editionType, docYear);
 
-        if (DocumentHelper.saveDocument(file, fields)){
+            documentUploadHelper.saveDocument(file);
             return "/upload_succesful.xhtml";
-        } else {
+        } catch (IOException e){
             FacesMessage msg = new FacesMessage("Upload error", "An error occurred while uploading your" +
                     "document, please try again in a few minutes");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -66,8 +59,8 @@ public class DocUploadBean implements Serializable{
         return docLang;
     }
 
-    public Date getDocCompDate() {
-        return docCompDate;
+    public String getDocYear() {
+        return docYear;
     }
 
     public String getEditionName() {
@@ -98,8 +91,8 @@ public class DocUploadBean implements Serializable{
         this.docLang = docLang;
     }
 
-    public void setDocCompDate(Date docCompDate) {
-        this.docCompDate = docCompDate;
+    public void setDocYear(String docYear) {
+        this.docYear = docYear;
     }
 
     public void setEditionName(String editionName) {

@@ -18,10 +18,9 @@ import euporia.tecnling.retoricaweb.database.DbModel.Writable;
 public class DocumentDAO extends DbModel implements Writable{
     private Document wordsArray;
     private Document tags;
-    private String title, author, language, edition, editionType, uploadedBy;
-    private Date compositionDate;
+    private String title, author, language, edition, editionType, uploadedBy, compositionYear;
 
-    public DocumentDAO(String uniqueFieldValue){
+    private DocumentDAO(String uniqueFieldValue){
         super("documents", "title", uniqueFieldValue);
     }
 
@@ -30,9 +29,9 @@ public class DocumentDAO extends DbModel implements Writable{
     }
 
     public boolean write(){
-        Document document = new Document("title", title)
+        Document document = new Document(DOC_TITLE, title)
                 .append(DOC_AUTHOR, author)
-                .append(DOC_DATE, compositionDate)
+                .append(DOC_DATE, compositionYear)
                 .append(DOC_LANG, language)
                 .append(DOC_ED_NAME, edition)
                 .append(DOC_ED_TYPE, editionType)
@@ -61,8 +60,8 @@ public class DocumentDAO extends DbModel implements Writable{
         return editionType;
     }
 
-    public Date getCompositionDate() {
-        return compositionDate;
+    public String getCompositionYear() {
+        return compositionYear;
     }
 
     public Document getWordsArray() {
@@ -90,7 +89,7 @@ public class DocumentDAO extends DbModel implements Writable{
         documentDao.editionType = builder.editionType;
         documentDao.uploadedBy = builder.uploadedBy;
         documentDao.tags = builder.tags;
-        documentDao.compositionDate = builder.compositionDate;
+        documentDao.compositionYear = builder.compositionYear;
 
         return documentDao;
     }
@@ -99,7 +98,7 @@ public class DocumentDAO extends DbModel implements Writable{
         private Document wordsArray;
         private Document tags;
         private String title, author, language, edition, editionType, uploadedBy;
-        private Date compositionDate;
+        private String compositionYear;
 
         public Builder title(String title){
             this.title = title;
@@ -131,8 +130,8 @@ public class DocumentDAO extends DbModel implements Writable{
             return this;
         }
 
-        public Builder compositionDate(Date compositionDate){
-            this.compositionDate = compositionDate;
+        public Builder compositionYear(String compositionYear){
+            this.compositionYear = compositionYear;
             return this;
         }
 
