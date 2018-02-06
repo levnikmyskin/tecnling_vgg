@@ -1,4 +1,4 @@
-package euporia.tecnling.retoricaweb.sessionmodels;
+package euporia.tecnling.retoricaweb.sessionmanagement;
 
 import org.bson.Document;
 import euporia.tecnling.retoricaweb.utils.AppConstants;

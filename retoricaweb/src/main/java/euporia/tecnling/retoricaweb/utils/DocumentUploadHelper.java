@@ -2,6 +2,7 @@ package euporia.tecnling.retoricaweb.utils;
 
 import euporia.tecnling.retoricaweb.database.DocumentDAO;
 import euporia.tecnling.retoricaweb.database.UserDAO;
+import euporia.tecnling.retoricaweb.sessionmanagement.SessionHelper;
 
 import javax.servlet.http.Part;
 import java.io.BufferedReader;
@@ -11,8 +12,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 /**
  *  Helper class to manage document upload and store it into database. First, a directory with the file name is created,

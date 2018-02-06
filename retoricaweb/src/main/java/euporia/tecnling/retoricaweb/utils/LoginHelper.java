@@ -1,5 +1,6 @@
 package euporia.tecnling.retoricaweb.utils;
 
+import euporia.tecnling.retoricaweb.sessionmanagement.SessionHelper;
 import org.mindrot.jbcrypt.BCrypt;
 import euporia.tecnling.retoricaweb.database.UserDAO;
 import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;

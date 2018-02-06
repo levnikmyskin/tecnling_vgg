@@ -2,7 +2,7 @@ package euporia.tecnling.retoricaweb;
 
 import euporia.tecnling.retoricaweb.database.UserDAO;
 import euporia.tecnling.retoricaweb.utils.AppConstants;
-import euporia.tecnling.retoricaweb.utils.SessionHelper;
+import euporia.tecnling.retoricaweb.sessionmanagement.SessionHelper;
 
 import javax.faces.bean.ManagedBean;
 

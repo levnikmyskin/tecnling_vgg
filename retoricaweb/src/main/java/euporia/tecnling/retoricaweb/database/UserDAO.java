@@ -1,7 +1,12 @@
 package euporia.tecnling.retoricaweb.database;
 
+import euporia.tecnling.retoricaweb.sessionmanagement.SessionHelper;
+import euporia.tecnling.retoricaweb.sessionmanagement.SessionStorable;
+import euporia.tecnling.retoricaweb.utils.AppConstants;
 import org.bson.Document;
 import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -12,7 +17,7 @@ import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
  * @author andrea
  */
 
-public class UserDAO extends DbModel{
+public class UserDAO extends DbModel implements SessionStorable{
     private String username;
     private String password;
     private String name;
@@ -57,6 +62,27 @@ public class UserDAO extends DbModel{
         this.name = user.getString("name");
         this.surname = user.getString("surname");
         this.roles = (Document) user.get("roles");
+    }
+
+    public void saveIntoSession(){
+        SessionHelper sessionHelper = SessionHelper.fromFacesContext(true);
+        sessionHelper.getSession().setAttribute(AppConstants.USER_SESSION, this);
+    }
+
+    public UserDAO retrieveFromFacesContext(){
+        try {
+            return (UserDAO) SessionHelper.fromFacesContext(false).getInstance(AppConstants.USER_SESSION);
+        } catch (NullPointerException e){
+            return null;
+        }
+    }
+
+    public UserDAO retrieveFromRequest(HttpServletRequest request){
+       try{
+           return (UserDAO) SessionHelper.fromHttpRequest(request).getInstance(AppConstants.USER_SESSION);
+       } catch (NullPointerException e){
+           return null;
+       }
     }
 
 
