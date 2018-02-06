@@ -1,6 +1,7 @@
 package euporia.tecnling.retoricaweb.utils;
 
 import euporia.tecnling.retoricaweb.database.DocumentDAO;
+import euporia.tecnling.retoricaweb.database.LanguageEnum;
 import euporia.tecnling.retoricaweb.database.UserDAO;
 import euporia.tecnling.retoricaweb.sessionmanagement.SessionHelper;
 
@@ -23,16 +24,19 @@ import java.util.ArrayList;
  */
 
 public class DocumentUploadHelper {
-    private String author, title, language, edition, editionType, compositionYear;
+    private String author, title, edition, editionType, dirName;
+    private LanguageEnum language;
+    private int compositionYear;
 
-    public DocumentUploadHelper(String author, String title, String language, String edition, String editionType,
-                                String compositionYear){
+    public DocumentUploadHelper(String author, String title, LanguageEnum language, String edition, String editionType,
+                                int compositionYear){
         this.author = author;
         this.title = title;
         this.language = language;
         this.edition = edition;
         this.editionType = editionType;
         this.compositionYear = compositionYear;
+        this.dirName = String.format("%s_%s_%s", replaceWhiteSpaces(author), replaceWhiteSpaces(title), compositionYear);
     }
 
     public void saveDocument(Part file) throws IOException{
@@ -45,9 +49,6 @@ public class DocumentUploadHelper {
     }
 
     private String createDirectory() throws IOException{
-        String author = replaceWhiteSpaces(this.author);
-        String title = replaceWhiteSpaces(this.title);
-        String dirName = String.format("%s_%s_%s", author, title, compositionYear);
         String path = String.format("%s/%s/", AppConstants.DOCUMENT_DIRECTORY, dirName);
         Files.createDirectories(Paths.get(path));
         return path;
@@ -83,9 +84,7 @@ public class DocumentUploadHelper {
 
     private void newTextFile(ArrayList<String> fiftyLineList, String dirPath, int fileCounter)
             throws IOException{
-        String author = replaceWhiteSpaces(this.author);
-        String title = replaceWhiteSpaces(this.title);
-        String fileName = String.format("%s_%s_%s_%d.txt", author, title, compositionYear, fileCounter);
+        String fileName = String.format("%s_%d.txt", dirName, fileCounter);
         Files.write(
                 Paths.get(dirPath + fileName),
                 fiftyLineList,
@@ -104,6 +103,7 @@ public class DocumentUploadHelper {
                 .editionType(editionType)
                 .compositionYear(compositionYear)
                 .uploadedBy(uploader.getUsername())
+                .dirName(dirName)
                 .build();
 
         document.write();

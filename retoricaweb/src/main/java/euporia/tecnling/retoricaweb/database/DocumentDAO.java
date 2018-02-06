@@ -2,8 +2,6 @@ package euporia.tecnling.retoricaweb.database;
 
 import org.bson.Document;
 
-import java.util.Date;
-
 import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 import euporia.tecnling.retoricaweb.database.DbModel.Writable;
 
@@ -16,9 +14,10 @@ import euporia.tecnling.retoricaweb.database.DbModel.Writable;
  */
 
 public class DocumentDAO extends DbModel implements Writable{
-    private Document wordsArray;
     private Document tags;
-    private String title, author, language, edition, editionType, uploadedBy, compositionYear;
+    private String title, author, edition, editionType, uploadedBy, dirName;
+    private int compositionYear;
+    private LanguageEnum language;
 
     private DocumentDAO(String uniqueFieldValue){
         super("documents", "title", uniqueFieldValue);
@@ -35,8 +34,8 @@ public class DocumentDAO extends DbModel implements Writable{
                 .append(DOC_LANG, language)
                 .append(DOC_ED_NAME, edition)
                 .append(DOC_ED_TYPE, editionType)
-                .append(DOC_WORDS, wordsArray)
-                .append(DOC_UPD, uploadedBy);
+                .append(DOC_UPD, uploadedBy)
+                .append(DOC_DIRNAME, dirName);
 
         getCollection().insertOne(document);
         return true;
@@ -60,19 +59,16 @@ public class DocumentDAO extends DbModel implements Writable{
         return editionType;
     }
 
-    public String getCompositionYear() {
+    public int getCompositionYear() {
         return compositionYear;
     }
 
-    public Document getWordsArray() {
-        return wordsArray;
-    }
 
     public Document getTags() {
         return tags;
     }
 
-    public String getLanguage() {
+    public LanguageEnum getLanguage() {
         return language;
     }
 
@@ -90,15 +86,16 @@ public class DocumentDAO extends DbModel implements Writable{
         documentDao.uploadedBy = builder.uploadedBy;
         documentDao.tags = builder.tags;
         documentDao.compositionYear = builder.compositionYear;
+        documentDao.dirName = builder.dirName;
 
         return documentDao;
     }
 
     public static class Builder{
-        private Document wordsArray;
         private Document tags;
-        private String title, author, language, edition, editionType, uploadedBy;
-        private String compositionYear;
+        private String title, author, edition, editionType, uploadedBy, dirName;
+        private LanguageEnum language;
+        private int compositionYear;
 
         public Builder title(String title){
             this.title = title;
@@ -110,7 +107,7 @@ public class DocumentDAO extends DbModel implements Writable{
             return this;
         }
 
-        public Builder language(String language){
+        public Builder language(LanguageEnum language){
             this.language = language;
             return this;
         }
@@ -130,7 +127,7 @@ public class DocumentDAO extends DbModel implements Writable{
             return this;
         }
 
-        public Builder compositionYear(String compositionYear){
+        public Builder compositionYear(int compositionYear){
             this.compositionYear = compositionYear;
             return this;
         }
@@ -140,9 +137,15 @@ public class DocumentDAO extends DbModel implements Writable{
             return this;
         }
 
+        public Builder dirName(String dirName){
+            this.dirName = dirName;
+            return this;
+        }
+
         public DocumentDAO build(){
             return fromFormData(this);
         }
     }
 
 }
+

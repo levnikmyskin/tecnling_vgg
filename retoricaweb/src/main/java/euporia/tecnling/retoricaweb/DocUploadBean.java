@@ -1,5 +1,6 @@
 package euporia.tecnling.retoricaweb;
 
+import euporia.tecnling.retoricaweb.database.LanguageEnum;
 import euporia.tecnling.retoricaweb.utils.DocumentUploadHelper;
 
 import javax.faces.application.FacesMessage;
@@ -19,8 +20,8 @@ public class DocUploadBean implements Serializable{
     private static final long serialVersionUID = -2539533438288647286L;
     private String docTitle;
     private String docAuthor;
-    private String docLang;
-    private String docYear;
+    private LanguageEnum docLang;
+    private int docYear;
     private String editionName;
     private String editionType;
     private Part file;
@@ -55,11 +56,11 @@ public class DocUploadBean implements Serializable{
         return docAuthor;
     }
 
-    public String getDocLang() {
+    public LanguageEnum getDocLang() {
         return docLang;
     }
 
-    public String getDocYear() {
+    public int getDocYear() {
         return docYear;
     }
 
@@ -87,11 +88,11 @@ public class DocUploadBean implements Serializable{
         this.docAuthor = docAuthor;
     }
 
-    public void setDocLang(String docLang) {
+    public void setDocLang(LanguageEnum docLang) {
         this.docLang = docLang;
     }
 
-    public void setDocYear(String docYear) {
+    public void setDocYear(int docYear) {
         this.docYear = docYear;
     }
 
