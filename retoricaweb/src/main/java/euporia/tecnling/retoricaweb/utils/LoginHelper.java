@@ -24,8 +24,7 @@ public class LoginHelper {
             UserDAO user = new UserDAO(username);
 
             if (BCrypt.checkpw(password, user.getPassword())) {
-                // Store user in session
-                SessionHelper.getSession(true).setAttribute(AppConstants.USER_SESSION, user);
+                user.saveIntoSession();
                 return true;
             }
 

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 
 public class SessionHelper {
-    HttpSession session;
+    private HttpSession session;
 
     private SessionHelper(HttpSession session){
         this.session = session;
@@ -49,7 +49,6 @@ public class SessionHelper {
      * @return An instance of Object, which should be casted to an actual class
      */
     public Object getInstance(@NotNull final String SESSION_ATTRIBUTE_NAME) {
-        HttpSession session = getSession(false);
         if(session != null)
             return session.getAttribute(SESSION_ATTRIBUTE_NAME);
         return null;

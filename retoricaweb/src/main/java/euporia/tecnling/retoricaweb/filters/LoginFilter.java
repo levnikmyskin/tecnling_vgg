@@ -1,5 +1,6 @@
 package euporia.tecnling.retoricaweb.filters;
 
+import euporia.tecnling.retoricaweb.database.UserDAO;
 import euporia.tecnling.retoricaweb.utils.AppConstants;
 import euporia.tecnling.retoricaweb.sessionmanagement.SessionHelper;
 
@@ -33,7 +34,7 @@ public class LoginFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String loginUrl = request.getContextPath() + "/login.xhtml";
 
-        boolean isLoggedIn = SessionHelper.getInstance(AppConstants.USER_SESSION) != null;
+        boolean isLoggedIn = UserDAO.retrieveFromRequest(request) != null;
         boolean isLoginRequest = request.getRequestURI().equals(loginUrl);
 
         if (isLoggedIn || isLoginRequest){

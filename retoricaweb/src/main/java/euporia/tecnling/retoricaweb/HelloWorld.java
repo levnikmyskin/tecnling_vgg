@@ -15,7 +15,7 @@ public class HelloWorld {
 
     public String getMessage() {
         // testing session
-        UserDAO user = (UserDAO) SessionHelper.getInstance(AppConstants.USER_SESSION);
+        UserDAO user = UserDAO.retrieveFromFacesContext();
         if (user != null)
             return "Welcome " + user.getName() + " " + user.getSurname();
         return "Hello heaven!";

@@ -69,7 +69,7 @@ public class UserDAO extends DbModel implements SessionStorable{
         sessionHelper.getSession().setAttribute(AppConstants.USER_SESSION, this);
     }
 
-    public UserDAO retrieveFromFacesContext(){
+    public static UserDAO retrieveFromFacesContext(){
         try {
             return (UserDAO) SessionHelper.fromFacesContext(false).getInstance(AppConstants.USER_SESSION);
         } catch (NullPointerException e){
@@ -77,7 +77,7 @@ public class UserDAO extends DbModel implements SessionStorable{
         }
     }
 
-    public UserDAO retrieveFromRequest(HttpServletRequest request){
+    public static UserDAO retrieveFromRequest(HttpServletRequest request){
        try{
            return (UserDAO) SessionHelper.fromHttpRequest(request).getInstance(AppConstants.USER_SESSION);
        } catch (NullPointerException e){
