@@ -10,6 +10,7 @@ package euporia.tecnling.retoricaweb.utils;
 public final class AppConstants {
 
     public static final String USER_SESSION = "loggedUser";
+    public static final String DATABASE_NAME = "retoricaweb";
     public static final String DOC_AUTHOR = "docAuthor";
     public static final String DOC_TITLE = "docTitle";
     public static final String DOC_DATE = "docDate";

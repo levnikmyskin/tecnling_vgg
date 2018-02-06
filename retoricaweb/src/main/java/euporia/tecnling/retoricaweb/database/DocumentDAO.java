@@ -3,24 +3,23 @@ package euporia.tecnling.retoricaweb.database;
 import org.bson.Document;
 
 import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
-import euporia.tecnling.retoricaweb.database.DbModel.Writable;
 
 /**
  * Model to save and update a document into the database.
- * @see DbModel
+ * @see DatabaseDAOModel
  *
  * @author andrea
  * @author alessio
  */
 
-public class DocumentDAO extends DbModel implements Writable{
+public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
     private Document tags;
     private String title, author, edition, editionType, uploadedBy, dirName;
     private int compositionYear;
     private LanguageEnum language;
 
     private DocumentDAO(String uniqueFieldValue){
-        super("documents", "title", uniqueFieldValue);
+        super(getCollectionName(), getUniqueFieldName(), uniqueFieldValue);
     }
 
     private static DocumentDAO fromFormData(Builder builder){
@@ -76,6 +75,14 @@ public class DocumentDAO extends DbModel implements Writable{
         return uploadedBy;
     }
 
+    public static String getCollectionName(){
+        return "documents";
+    }
+
+    public static String getUniqueFieldName(){
+        return "title";
+    }
+
     private static DocumentDAO initializeFields(Builder builder){
         DocumentDAO documentDao = new DocumentDAO(null);
         documentDao.title = builder.title;
@@ -90,6 +97,11 @@ public class DocumentDAO extends DbModel implements Writable{
 
         return documentDao;
     }
+
+    /*
+     *******************
+     * Builder
+     *******************/
 
     public static class Builder{
         private Document tags;

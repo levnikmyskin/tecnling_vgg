@@ -7,6 +7,7 @@ import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 
+import euporia.tecnling.retoricaweb.utils.AppConstants;
 import euporia.tecnling.retoricaweb.utils.MongodbHelper;
 import org.bson.Document;
 
@@ -14,18 +15,13 @@ import org.bson.Document;
  * Base class for Db modeling. It has to be extended for every model in this package.
  * It deals with a single object from the collection, per instance.
  *
+ * <p style="color: red">WARNING: Every subclass that can be read MUST "override" the {@link Readable} static methods</p>
+ *
  * @author alessio
  */
 
-public abstract class DbModel {
+public class DatabaseDAOModel implements Readable{
 
-    /**
-     * Implemented by those DAOs for which this app is allowed to write
-     * on the DB.
-     */
-    interface Writable{
-        boolean write();
-    }
 
     private MongoDatabase database;
     private MongoCollection<Document> collection;
@@ -37,15 +33,13 @@ public abstract class DbModel {
      * primary key identifying this row uniquely. From the perspective of
      * a class outside of this package, the only argument needed is actually
      * the uniqueFieldValue
-     * @param collection collection (table) name as defined on the db
-     * @param uniqueFieldName Primary key name
      * @param uniqueFieldValue Primary key value
      */
-    DbModel(String collection, String uniqueFieldName, String uniqueFieldValue){
+    DatabaseDAOModel(String collectionName, String uniqueFieldName, String uniqueFieldValue){
         // Keep access private to package
         MongoClient mongoClient = new MongodbHelper().connect();
-        this.database = mongoClient.getDatabase("retoricaweb");
-        this.collection = this.database.getCollection(collection);
+        this.database = mongoClient.getDatabase(AppConstants.DATABASE_NAME);
+        this.collection = this.database.getCollection(collectionName);
         this.uniqueFieldName = uniqueFieldName;
         this.uniqueFieldValue = uniqueFieldValue;
     }
@@ -74,7 +68,6 @@ public abstract class DbModel {
         );
         return true;
     }
-
 
     public MongoDatabase getDatabase() {
         return database;

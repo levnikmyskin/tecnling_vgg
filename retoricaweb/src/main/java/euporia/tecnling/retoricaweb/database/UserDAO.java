@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Model to manage users in the db, extends DbModel
- * @see DbModel
+ * Model to manage users in the db, extends DatabaseDAOModel
+ * @see DatabaseDAOModel
  *
  * @author alessio
  * @author andrea
  */
 
-public class UserDAO extends DbModel implements SessionStorable{
+public class UserDAO extends DatabaseDAOModel implements SessionStorable, Readable{
+
     private String username;
     private String password;
     private String name;
@@ -25,7 +26,7 @@ public class UserDAO extends DbModel implements SessionStorable{
     private Document roles;
 
     public UserDAO(String uniqueFieldValue) throws ObjectDoesNotExistException{
-        super("users", "username", uniqueFieldValue);
+        super(getCollectionName(), getUniqueFieldName(), uniqueFieldValue);
         initUser();
     }
 
@@ -50,6 +51,14 @@ public class UserDAO extends DbModel implements SessionStorable{
      */
     public Document getRoles() {
         return roles;
+    }
+
+    public static String getCollectionName(){
+        return "users";
+    }
+
+    public static String getUniqueFieldName(){
+        return "username";
     }
 
     private void initUser() throws ObjectDoesNotExistException{
