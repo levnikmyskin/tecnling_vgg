@@ -95,7 +95,7 @@ public class DocumentUploadHelper {
 
     private void writeDocument(){
 
-        UserDAO uploader = (UserDAO) SessionHelper.getInstance(AppConstants.USER_SESSION);
+        UserDAO uploader = UserDAO.retrieveFromFacesContext();
         DocumentDAO document = new DocumentDAO.Builder()
                 .author(author)
                 .title(title)
