@@ -1,6 +1,10 @@
 package euporia.tecnling.retoricaweb;
 
+import com.mongodb.client.MongoIterable;
+import euporia.tecnling.retoricaweb.database.DatabaseOperations;
+import euporia.tecnling.retoricaweb.database.DocumentDAO;
 import euporia.tecnling.retoricaweb.database.LanguageEnum;
+import euporia.tecnling.retoricaweb.utils.AppConstants;
 import euporia.tecnling.retoricaweb.utils.DocumentUploadHelper;
 
 import javax.faces.application.FacesMessage;

@@ -172,7 +172,7 @@ public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
             this.edition(document.getString(DOC_ED_NAME));
             this.editionType(document.getString(DOC_ED_TYPE));
             this.uploadedBy(document.getString(DOC_UPD));
-            this.compositionYear(document.getInteger(DOC_DATE));
+            this.compositionYear(Integer.parseInt(document.getString(DOC_DATE)));
             this.dirName(document.getString(DOC_DIRNAME));
             return buildDocument(this);
         }

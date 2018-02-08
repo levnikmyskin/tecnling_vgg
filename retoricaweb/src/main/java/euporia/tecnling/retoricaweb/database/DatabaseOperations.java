@@ -21,8 +21,20 @@ import static com.mongodb.client.model.Filters.eq;
  *
  * @author alessio
  */
-public class DatabaseOperations implements Function<Document,  DatabaseDAOModel>{
+public class DatabaseOperations{
     private Class<? extends DatabaseDAOModel> databaseDao;
+
+    private Function<Document, DatabaseDAOModel> mapFunction = new Function<Document, DatabaseDAOModel>() {
+        @Override
+        public DatabaseDAOModel apply(Document document) {
+            try {
+                return (DatabaseDAOModel) databaseDao.getMethod("initializeFromDbQuery", Document.class)
+                        .invoke(null, document);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+    };
 
     /**
      * Please double check that your {@link DatabaseDAOModel} extending classes overrides the Readable interface
@@ -38,17 +50,7 @@ public class DatabaseOperations implements Function<Document,  DatabaseDAOModel>
         MongoDatabase database = client.getDatabase(AppConstants.DATABASE_NAME);
         String collectionName = (String) databaseDao.getMethod("getCollectionName").invoke(null);
 
-        MongoCollection collection = database.getCollection(collectionName);
-        return collection.find(eq(fieldName, fieldValue)).map(this);
-    }
-
-
-    @Override
-    public DatabaseDAOModel apply(Document o){
-        try {
-            return (DatabaseDAOModel) databaseDao.getMethod("initializeFromDbQuery", Document.class).invoke(null, o);
-        } catch (Exception e) {
-            return null;
-        }
+        MongoCollection<Document> collection = database.getCollection(collectionName);
+        return collection.find(eq(fieldName, fieldValue)).map(this.mapFunction);
     }
 }
