@@ -6,7 +6,7 @@ package euporia.tecnling.retoricaweb.exceptions;
  * @author alessio
  */
 
-public class ObjectDoesNotExistException extends Exception{
+public class ObjectDoesNotExistException extends RuntimeException{
     private static final long serialVersionUID = 6184904505979970003L;
     private String errorMessage;
 

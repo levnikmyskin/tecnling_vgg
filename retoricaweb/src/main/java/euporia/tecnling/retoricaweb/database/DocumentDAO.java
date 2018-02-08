@@ -1,6 +1,9 @@
 package euporia.tecnling.retoricaweb.database;
 
+import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 import org.bson.Document;
+
+import javax.validation.constraints.NotNull;
 
 import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 
@@ -14,15 +17,14 @@ import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 
 public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
     private Document tags;
-    private String title, author, edition, editionType, uploadedBy, dirName;
+    private String title, author, edition, editionType, uploadedBy, dirName, language;
     private int compositionYear;
-    private LanguageEnum language;
 
     private DocumentDAO(String uniqueFieldValue){
         super(getCollectionName(), getUniqueFieldName(), uniqueFieldValue);
     }
 
-    private static DocumentDAO fromFormData(Builder builder){
+    private static DocumentDAO buildDocument(Builder builder){
         return initializeFields(builder);
     }
 
@@ -40,7 +42,20 @@ public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
         return true;
     }
 
-    /* GETTERS */
+
+    public static DatabaseDAOModel initializeFromDbQuery(@NotNull Document document){
+        return new DocumentDAO.Builder().buildFromDbQuery(document);
+    }
+
+    public static String getCollectionName(){
+        return "documents";
+    }
+
+    public static String getUniqueFieldName(){
+        return "title";
+    }
+
+   /* GETTERS */
 
     public String getTitle() {
         return title;
@@ -68,19 +83,11 @@ public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
     }
 
     public LanguageEnum getLanguage() {
-        return language;
+        return LanguageEnum.valueOf(language);
     }
 
     public String getUploadedBy() {
         return uploadedBy;
-    }
-
-    public static String getCollectionName(){
-        return "documents";
-    }
-
-    public static String getUniqueFieldName(){
-        return "title";
     }
 
     private static DocumentDAO initializeFields(Builder builder){
@@ -98,6 +105,7 @@ public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
         return documentDao;
     }
 
+
     /*
      *******************
      * Builder
@@ -105,8 +113,7 @@ public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
 
     public static class Builder{
         private Document tags;
-        private String title, author, edition, editionType, uploadedBy, dirName;
-        private LanguageEnum language;
+        private String title, author, edition, editionType, uploadedBy, dirName, language;
         private int compositionYear;
 
         public Builder title(String title){
@@ -120,7 +127,7 @@ public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
         }
 
         public Builder language(LanguageEnum language){
-            this.language = language;
+            this.language = language.name();
             return this;
         }
 
@@ -155,7 +162,19 @@ public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
         }
 
         public DocumentDAO build(){
-            return fromFormData(this);
+            return buildDocument(this);
+        }
+
+        private DocumentDAO buildFromDbQuery(Document document){
+            this.title(document.getString(DOC_TITLE));
+            this.author(document.getString(DOC_AUTHOR));
+            this.language = document.getString(DOC_LANG);
+            this.edition(document.getString(DOC_ED_NAME));
+            this.editionType(document.getString(DOC_ED_TYPE));
+            this.uploadedBy(document.getString(DOC_UPD));
+            this.compositionYear(document.getInteger(DOC_DATE));
+            this.dirName(document.getString(DOC_DIRNAME));
+            return buildDocument(this);
         }
     }
 

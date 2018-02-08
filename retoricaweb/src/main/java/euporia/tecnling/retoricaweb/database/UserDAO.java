@@ -7,6 +7,7 @@ import org.bson.Document;
 import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -27,7 +28,46 @@ public class UserDAO extends DatabaseDAOModel implements SessionStorable, Readab
 
     public UserDAO(String uniqueFieldValue) throws ObjectDoesNotExistException{
         super(getCollectionName(), getUniqueFieldName(), uniqueFieldValue);
-        initUser();
+        initUser(this.retrieveFromDb());
+    }
+
+    public UserDAO(Document document){
+        initUser(document);
+    }
+
+
+    @Override
+    public void saveIntoSession(){
+        SessionHelper sessionHelper = SessionHelper.fromFacesContext(true);
+        sessionHelper.getSession().setAttribute(AppConstants.USER_SESSION, this);
+    }
+
+    public static UserDAO retrieveFromFacesContext(){
+        try {
+            return (UserDAO) SessionHelper.fromFacesContext(false).getInstance(AppConstants.USER_SESSION);
+        } catch (NullPointerException e){
+            return null;
+        }
+    }
+
+    public static UserDAO retrieveFromRequest(HttpServletRequest request){
+        try{
+            return (UserDAO) SessionHelper.fromHttpRequest(request).getInstance(AppConstants.USER_SESSION);
+        } catch (NullPointerException e){
+            return null;
+        }
+    }
+
+    public static DatabaseDAOModel initializeFromDbQuery(@NotNull Document document){
+        return new UserDAO(document);
+    }
+
+    public static String getCollectionName(){
+        return "users";
+    }
+
+    public static String getUniqueFieldName() {
+        return "username";
     }
 
     public String getUsername() {
@@ -53,16 +93,7 @@ public class UserDAO extends DatabaseDAOModel implements SessionStorable, Readab
         return roles;
     }
 
-    public static String getCollectionName(){
-        return "users";
-    }
-
-    public static String getUniqueFieldName(){
-        return "username";
-    }
-
-    private void initUser() throws ObjectDoesNotExistException{
-        Document user = this.retrieveFromDb();
+    private void initUser(Document user){
         if(user == null)
             throw new ObjectDoesNotExistException("User " + username + " does not exist");
 
@@ -72,27 +103,4 @@ public class UserDAO extends DatabaseDAOModel implements SessionStorable, Readab
         this.surname = user.getString("surname");
         this.roles = (Document) user.get("roles");
     }
-
-    public void saveIntoSession(){
-        SessionHelper sessionHelper = SessionHelper.fromFacesContext(true);
-        sessionHelper.getSession().setAttribute(AppConstants.USER_SESSION, this);
-    }
-
-    public static UserDAO retrieveFromFacesContext(){
-        try {
-            return (UserDAO) SessionHelper.fromFacesContext(false).getInstance(AppConstants.USER_SESSION);
-        } catch (NullPointerException e){
-            return null;
-        }
-    }
-
-    public static UserDAO retrieveFromRequest(HttpServletRequest request){
-       try{
-           return (UserDAO) SessionHelper.fromHttpRequest(request).getInstance(AppConstants.USER_SESSION);
-       } catch (NullPointerException e){
-           return null;
-       }
-    }
-
-
 }

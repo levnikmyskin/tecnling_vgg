@@ -45,6 +45,12 @@ public class DatabaseDAOModel implements Readable{
     }
 
     /**
+     * Standard constructor to be used when constructing the object from an already retrieved
+     * data set
+     */
+    DatabaseDAOModel(){}
+
+    /**
      * Retrieve a single object from the collection, using the specified
      * unique field name and value. If the two parameters are not unique,
      * the method will return the first instance retrieved
