@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Euporia Champagne - Search document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"/>
+</h:head>
+<h:body>
+    <ui:composition template="ui_template/navbar.xhtml">
+        <ui:define name="main_content">
+            <div class="col-12">
+                <h2>Euporia's search page <i class="fa fa-search"/></h2>
+                <h:form id="docSearchForm" method="post">
+                    <div class="input-group pb-3">
+                        <h:inputText class="form-control" placeholder="Search..." id="searchText" value="#{docSearchBean.searchString}"/>
+                        <h:commandButton type="submit" class="btn btn-primary" value="Search" action="#{docSearchBean.doSearch()}"/>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <h:selectOneRadio id="byAuthorRadio" name="radioGroup" value="#{docSearchBean.byAuthor}" class="custom-control-input" checked="checked"/>
+                        <label class="custom-control-label" for="byAuthorRadio">By author</label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <h:selectOneRadio id="byTitle" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byTitle}"/>
+                        <label class="custom-control-label" for="byTitle">By title</label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <h:selectOneRadio id="byLang" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byLang}"/>
+                        <label class="custom-control-label" for="byLang">By lang</label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <h:selectOneRadio id="byYear" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byYear}"/>
+                        <label class="custom-control-label" for="byYear">By year</label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <h:selectOneRadio id="byEditionType" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byEditionType}"/>
+                        <label class="custom-control-label" for="byEditionType">By edition type</label>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+
+    <h:outputScript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"/>
+    <h:outputScript src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"/>
+    <h:outputScript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"/>
+</h:body>
+</html>

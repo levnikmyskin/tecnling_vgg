@@ -1,34 +1,44 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <title>Retorica Web</title>
+    <meta charset="UTF-8"/>
+    <title>Euporia Champagne - Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"/>
 </h:head>
 <h:body>
-    <h1>Retorica Web</h1>
-    <h3>Login</h3>
-    <h:message for="loginForm" class="error-messages"/>
-    <h:form id="loginForm">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <h:inputText id="username" value="#{loginBean.username}"/>
-        </div>
+    <ui:composition template="ui_template/navbar.xhtml">
+        <ui:define name="main_content">
+            <div class="col-5 mt-3">
+                <h1>Welcome on RetoricaWeb!</h1>
+                <h3>Login</h3>
+                <h:message for="loginForm" class="text-danger"/>
+                <h:form id="loginForm" method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <h:inputText class="form-control" id="username" value="#{loginBean.username}"/>
+                    </div>
 
-        <div class="form-group">
-            <label for="password">Password</label>
-            <h:inputSecret id="password" value="#{loginBean.password}"/>
-        </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <h:inputSecret class="form-control" id="password" value="#{loginBean.password}"/>
+                    </div>
 
-        <h:commandButton action="#{loginBean.login()}"
-                         value="Login" class="login-button"/>
+                    <h:commandButton action="#{loginBean.login()}" value="Login" class="btn btn-primary"/>
 
-        <a href="https://github.com/levnikmyskin/tecnling_vgg"><img style="margin-left: 2rem;" src="img/GitHub-Mark-32px.png" alt=""/>
-            See on GitHub
-        </a>
-    </h:form>
+                    <a href="https://github.com/levnikmyskin/tecnling_vgg"><img class="ml-3" src="img/GitHub-Mark-32px.png" alt=""/>
+                        See on GitHub
+                    </a>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
 
 
+    <h:outputScript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"/>
+    <h:outputScript src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"/>
+    <h:outputScript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"/>
 </h:body>
 </html>

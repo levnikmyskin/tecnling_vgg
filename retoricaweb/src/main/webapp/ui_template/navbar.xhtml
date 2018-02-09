@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Euporia Champagne</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"/>
+</h:head>
+<h:body>
+    <!--NAVBAR-->
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <h:link class="navbar-brand" outcome="index">RetoricaWeb</h:link>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"/>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <h:link class="nav-link" outcome="index">Home <i class="fa fa-home"/> <span class="sr-only">(current)</span></h:link>
+                </li>
+                <li class="nav-item">
+                    <h:link class="nav-link" outcome="doc_upload">Upload document <i class="fa fa-upload"/></h:link>
+                </li>
+                <li class="nav-item">
+                    <h:link outcome="doc_search" class="nav-link">Search document <i class="fa fa-search"/></h:link>
+                </li>
+            </ul>
+
+            <a class="nav-item" href="https://github.com/levnikmyskin/tecnling_vgg">See on GitHub<img class="ml-3" src="img/GitHub-Mark-32px.png" alt=""/></a>
+        </div>
+    </nav>
+    <!--END NAVBAR-->
+
+    <div class="container">
+        <div class="row">
+            <ui:insert name="main_content"/>
+        </div>
+    </div>
+
+    <h:outputScript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"/>
+    <h:outputScript src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"/>
+    <h:outputScript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"/>
+</h:body>
+</html>
