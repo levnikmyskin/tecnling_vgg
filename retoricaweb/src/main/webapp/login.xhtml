@@ -14,22 +14,24 @@
             <h1>Welcome on RetoricaWeb!</h1>
         </ui:define>
         <ui:define name="main_content">
-            <div class="col-5">
-                <h3>Login</h3>
-                <h:message for="loginForm" class="text-danger"/>
-                <h:form id="loginForm" method="post">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <h:inputText class="form-control" id="username" value="#{loginBean.username}"/>
-                    </div>
+            <div class="row mt-3">
+                <div class="col-5">
+                    <h3>Login</h3>
+                    <h:message for="loginForm" class="text-danger"/>
+                    <h:form id="loginForm" method="post">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <h:inputText class="form-control" id="username" value="#{loginBean.username}"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <h:inputSecret class="form-control" id="password" value="#{loginBean.password}"/>
-                    </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <h:inputSecret class="form-control" id="password" value="#{loginBean.password}"/>
+                        </div>
 
-                    <h:commandButton action="#{loginBean.login()}" value="Login" class="btn btn-primary"/>
-                </h:form>
+                        <h:commandButton action="#{loginBean.login()}" value="Login" class="btn btn-primary"/>
+                    </h:form>
+                </div>
             </div>
         </ui:define>
     </ui:composition>

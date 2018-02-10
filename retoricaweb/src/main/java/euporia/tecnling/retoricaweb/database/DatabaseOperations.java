@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.regex;
 
 /**
  * Utility class to manage database operations, using the DatabaseDAOs. Every public method shall return
@@ -21,14 +22,14 @@ import static com.mongodb.client.model.Filters.eq;
  *
  * @author alessio
  */
-public class DatabaseOperations{
+public class DatabaseOperations<T extends DatabaseDAOModel>{
     private Class<? extends DatabaseDAOModel> databaseDao;
 
-    private Function<Document, DatabaseDAOModel> mapFunction = new Function<Document, DatabaseDAOModel>() {
+    private Function<Document, T> mapFunction = new Function<Document, T>() {
         @Override
-        public DatabaseDAOModel apply(Document document) {
+        public T apply(Document document) {
             try {
-                return (DatabaseDAOModel) databaseDao.getMethod("initializeFromDbQuery", Document.class)
+                return (T) databaseDao.getMethod("initializeFromDbQuery", Document.class)
                         .invoke(null, document);
             } catch (Exception e) {
                 return null;
@@ -44,13 +45,30 @@ public class DatabaseOperations{
         this.databaseDao = databaseDao;
     }
 
-    public MongoIterable<DatabaseDAOModel> searchDataByField(String fieldName, Object fieldValue)
+    public MongoIterable<T> searchDataByField(String fieldName, Object fieldValue)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException{
+        MongoCollection<Document> collection = getCollection(fieldName, fieldValue);
+        return collection.find(eq(fieldName, fieldValue)).map(this.mapFunction);
+    }
+
+    /**
+     * This method uses a regex expression to ignore case. This also means that it will return data
+     * which is not strictly equal to the value passed
+     *
+     * @param fieldValue The value to look for, passed as a string. It will be inserted in a regex as is.
+     */
+    public MongoIterable<T> searchDataByFieldIgnoreCase(String fieldName, String fieldValue)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException{
+        MongoCollection<Document> collection = getCollection(fieldName, fieldValue);
+        return collection.find(regex(fieldName, fieldValue, "i")).map(this.mapFunction);
+    }
+
+    private MongoCollection<Document> getCollection(String fieldName, Object fieldValue)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException{
         MongoClient client = new MongodbHelper().connect();
         MongoDatabase database = client.getDatabase(AppConstants.DATABASE_NAME);
         String collectionName = (String) databaseDao.getMethod("getCollectionName").invoke(null);
 
-        MongoCollection<Document> collection = database.getCollection(collectionName);
-        return collection.find(eq(fieldName, fieldValue)).map(this.mapFunction);
+        return database.getCollection(collectionName);
     }
 }

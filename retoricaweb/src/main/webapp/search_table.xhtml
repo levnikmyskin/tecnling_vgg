@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Euporia Champagne - Search document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"/>
+</h:head>
+<h:body>
+    <h:dataTable value="#{docSearchBean.getDocuments()}" var="document"
+                 styleClass="table"
+                 headerClass="col"
+                 row="row">
+
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{document.title}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Author</f:facet>
+            #{document.author}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Edition</f:facet>
+            #{document.edition}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Edition type</f:facet>
+            #{document.editionType}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Language</f:facet>
+            #{document.language}
+        </h:column>
+
+        <h:column>
+            <h:link class="btn btn-outline-primary" outcome="#">View</h:link>
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

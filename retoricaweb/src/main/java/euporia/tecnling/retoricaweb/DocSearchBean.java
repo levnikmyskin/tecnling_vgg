@@ -1,10 +1,12 @@
 package euporia.tecnling.retoricaweb;
 
+import com.mongodb.client.MongoIterable;
+import euporia.tecnling.retoricaweb.database.DocumentDAO;
+import euporia.tecnling.retoricaweb.documentmanagement.TextServingHelper;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.component.html.HtmlSelectBooleanCheckbox;
-import javax.faces.component.html.HtmlSelectOneRadio;
 import java.io.Serializable;
 
 @ManagedBean
@@ -13,19 +15,22 @@ public class DocSearchBean implements Serializable{
     private static final long serialVersionUID = 4193074060628764917L;
     private String searchString;
     private boolean byAuthor, byTitle, byLang, byYear, byEditionType;
-    private HtmlSelectOneRadio byAuthorRadio = new HtmlSelectOneRadio();
+    private MongoIterable<DocumentDAO> documents;
 
-    @PostConstruct
-    public void init(){
-        byAuthorRadio.setValue(true);
+    public void doSearch(){
+        this.documents = new TextServingHelper().getDocumentsByAuthor(this.searchString);
     }
 
-    public String doSearch(){
-        return "";
+    public MongoIterable<DocumentDAO> getDocuments() {
+        return documents;
     }
 
     public String getSearchString() {
         return searchString;
+    }
+
+    public void setSearchString(String searchString){
+        this.searchString = searchString;
     }
 
     public boolean isByAuthor() {
@@ -66,13 +71,5 @@ public class DocSearchBean implements Serializable{
 
     public void setByEditionType(boolean byEditionType) {
         this.byEditionType = byEditionType;
-    }
-
-    public HtmlSelectOneRadio getByAuthorChbx() {
-        return byAuthorRadio;
-    }
-
-    public void setByAuthorChbx(HtmlSelectOneRadio byAuthorRadio){
-        this.byAuthorRadio = byAuthorRadio;
     }
 }

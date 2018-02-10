@@ -25,57 +25,59 @@
         </ui:define>
 
         <ui:define name="main_content">
-            <div class="col-12">
-                <h:message for="docUploadForm" class="error-messages"/>
-                <h:form class="mt-3" id="docUploadForm" enctype="multipart/form-data" method="post">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="docTitle">Title:</label>
-                                <h:inputText id="docTitle" class="form-control" value="#{docUploadBean.docTitle}" required="true"/>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <h:message for="docUploadForm" class="error-messages"/>
+                    <h:form class="mt-3" id="docUploadForm" enctype="multipart/form-data" method="post">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="docTitle">Title:</label>
+                                    <h:inputText id="docTitle" class="form-control" value="#{docUploadBean.docTitle}" required="true"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="docAuthor">Author:</label>
+                                    <h:inputText id="docAuthor" class="form-control" value="#{docUploadBean.docAuthor}" required="true"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="docLanguage">Language:</label>
+                                    <h:inputText id="docLanguage" class="form-control" value="#{docUploadBean.docLang}"  required="true"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="compDate">Composition date:</label>
+                                    <h:inputText id="compDate" class="form-control" value="#{docUploadBean.docYear}" label="Composition date"
+                                                 p:placeholder="1842"  required="true">
+                                    </h:inputText>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="docAuthor">Author:</label>
-                                <h:inputText id="docAuthor" class="form-control" value="#{docUploadBean.docAuthor}" required="true"/>
-                            </div>
+                            <div class="col-6">
 
-                            <div class="form-group">
-                                <label for="docLanguage">Language:</label>
-                                <h:inputText id="docLanguage" class="form-control" value="#{docUploadBean.docLang}"  required="true"/>
-                            </div>
+                                <div class="form-group">
+                                    <label for="editionName">Edition:</label>
+                                    <h:inputText class="form-control" id="editionName" value="#{docUploadBean.editionName}"  required="true"/>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="compDate">Composition date:</label>
-                                <h:inputText id="compDate" class="form-control" value="#{docUploadBean.docYear}" label="Composition date"
-                                             p:placeholder="1842"  required="true">
-                                </h:inputText>
+                                <div class="form-group">
+                                    <label for="editionType">Edition type:</label>
+                                    <h:inputText id="editionType" class="form-control" value="#{docUploadBean.editionType}" p:placeholder="eg. Critical edition" required="true"/>
+                                </div>
+
+                                <div class="custom-file">
+                                    <h:inputFile id="newdoc" class="custom-file-input" value="#{docUploadBean.file}" required="true"/>
+                                    <label class="custom-file-label" for="newdoc">Document</label>
+                                </div>
+
+                                <div class="w-100 d-flex justify-content-end">
+                                    <h:commandButton class="mt-3 btn btn-primary" value="Upload" action="#{docUploadBean.uploadDocument()}"/>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-6">
-
-                            <div class="form-group">
-                                <label for="editionName">Edition:</label>
-                                <h:inputText class="form-control" id="editionName" value="#{docUploadBean.editionName}"  required="true"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="editionType">Edition type:</label>
-                                <h:inputText id="editionType" class="form-control" value="#{docUploadBean.editionType}" p:placeholder="eg. Critical edition" required="true"/>
-                            </div>
-
-                            <div class="custom-file">
-                                <h:inputFile id="newdoc" class="custom-file-input" value="#{docUploadBean.file}" required="true"/>
-                                <label class="custom-file-label" for="newdoc">Document</label>
-                            </div>
-
-                            <div class="w-100 d-flex justify-content-end">
-                                <h:commandButton class="mt-3 btn btn-primary" value="Upload" action="#{docUploadBean.uploadDocument()}"/>
-                            </div>
-                        </div>
-                    </div>
-                </h:form>
+                    </h:form>
+                </div>
             </div>
         </ui:define>
     </ui:composition>
