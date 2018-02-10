@@ -1,10 +1,6 @@
 package euporia.tecnling.retoricaweb;
 
-import com.mongodb.client.MongoIterable;
-import euporia.tecnling.retoricaweb.database.DatabaseOperations;
-import euporia.tecnling.retoricaweb.database.DocumentDAO;
 import euporia.tecnling.retoricaweb.database.LanguageEnum;
-import euporia.tecnling.retoricaweb.utils.AppConstants;
 import euporia.tecnling.retoricaweb.utils.DocumentUploadHelper;
 
 import javax.faces.application.FacesMessage;
@@ -14,8 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.Serializable;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 
 @ManagedBean
@@ -25,7 +19,7 @@ public class DocUploadBean implements Serializable{
     private String docTitle;
     private String docAuthor;
     private LanguageEnum docLang;
-    private int docYear;
+    private Integer docYear;
     private String editionName;
     private String editionType;
     private Part file;
@@ -64,7 +58,7 @@ public class DocUploadBean implements Serializable{
         return docLang;
     }
 
-    public int getDocYear() {
+    public Integer getDocYear() {
         return docYear;
     }
 
@@ -96,7 +90,7 @@ public class DocUploadBean implements Serializable{
         this.docLang = docLang;
     }
 
-    public void setDocYear(int docYear) {
+    public void setDocYear(Integer docYear) {
         this.docYear = docYear;
     }
 

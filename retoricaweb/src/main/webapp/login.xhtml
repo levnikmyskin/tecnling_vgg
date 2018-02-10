@@ -10,9 +10,11 @@
 </h:head>
 <h:body>
     <ui:composition template="ui_template/navbar.xhtml">
+        <ui:define name="header">
+            <h1>Welcome on RetoricaWeb!</h1>
+        </ui:define>
         <ui:define name="main_content">
-            <div class="col-5 mt-3">
-                <h1>Welcome on RetoricaWeb!</h1>
+            <div class="col-5">
                 <h3>Login</h3>
                 <h:message for="loginForm" class="text-danger"/>
                 <h:form id="loginForm" method="post">
@@ -27,10 +29,6 @@
                     </div>
 
                     <h:commandButton action="#{loginBean.login()}" value="Login" class="btn btn-primary"/>
-
-                    <a href="https://github.com/levnikmyskin/tecnling_vgg"><img class="ml-3" src="img/GitHub-Mark-32px.png" alt=""/>
-                        See on GitHub
-                    </a>
                 </h:form>
             </div>
         </ui:define>

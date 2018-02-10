@@ -12,6 +12,12 @@
 </h:head>
 <h:body>
     <ui:composition template="ui_template/navbar.xhtml">
+        <ui:define name="search-nav">
+            <li class="nav-item active">
+                <h:link outcome="doc_search" class="nav-link">Search document <i class="fa fa-search"/></h:link>
+            </li>
+        </ui:define>
+
         <ui:define name="main_content">
             <div class="col-12">
                 <h2>Euporia's search page <i class="fa fa-search"/></h2>
@@ -22,27 +28,27 @@
                     </div>
 
                     <div class="custom-control custom-radio custom-control-inline">
-                        <h:selectOneRadio id="byAuthorRadio" name="radioGroup" value="#{docSearchBean.byAuthor}" class="custom-control-input" checked="checked"/>
+                        <input type="radio" id="byAuthorRadio" name="radioGroup" value="#{docSearchBean.byAuthor}" class="custom-control-input" checked="checked"/>
                         <label class="custom-control-label" for="byAuthorRadio">By author</label>
                     </div>
 
                     <div class="custom-control custom-radio custom-control-inline">
-                        <h:selectOneRadio id="byTitle" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byTitle}"/>
+                        <input type="radio" id="byTitle" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byTitle}"/>
                         <label class="custom-control-label" for="byTitle">By title</label>
                     </div>
 
                     <div class="custom-control custom-radio custom-control-inline">
-                        <h:selectOneRadio id="byLang" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byLang}"/>
+                        <input type="radio" id="byLang" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byLang}"/>
                         <label class="custom-control-label" for="byLang">By lang</label>
                     </div>
 
                     <div class="custom-control custom-radio custom-control-inline">
-                        <h:selectOneRadio id="byYear" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byYear}"/>
+                        <input type="radio" id="byYear" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byYear}"/>
                         <label class="custom-control-label" for="byYear">By year</label>
                     </div>
 
                     <div class="custom-control custom-radio custom-control-inline">
-                        <h:selectOneRadio id="byEditionType" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byEditionType}"/>
+                        <input type="radio" id="byEditionType" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byEditionType}"/>
                         <label class="custom-control-label" for="byEditionType">By edition type</label>
                     </div>
                 </h:form>

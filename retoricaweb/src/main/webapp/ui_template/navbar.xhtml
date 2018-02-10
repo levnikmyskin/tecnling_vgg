@@ -18,15 +18,23 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <h:link class="nav-link" outcome="index">Home <i class="fa fa-home"/> <span class="sr-only">(current)</span></h:link>
-                </li>
-                <li class="nav-item">
-                    <h:link class="nav-link" outcome="doc_upload">Upload document <i class="fa fa-upload"/></h:link>
-                </li>
-                <li class="nav-item">
-                    <h:link outcome="doc_search" class="nav-link">Search document <i class="fa fa-search"/></h:link>
-                </li>
+                <ui:insert name="home-nav">
+                    <li class="nav-item">
+                        <h:link class="nav-link" outcome="index">Home <i class="fa fa-home"/> <span class="sr-only">(current)</span></h:link>
+                    </li>
+                </ui:insert>
+
+                <ui:insert name="upload-nav">
+                    <li class="nav-item">
+                        <h:link class="nav-link" outcome="doc_upload">Upload document <i class="fa fa-upload"/></h:link>
+                    </li>
+                </ui:insert>
+
+                <ui:insert name="search-nav">
+                    <li class="nav-item">
+                        <h:link outcome="doc_search" class="nav-link">Search document <i class="fa fa-search"/></h:link>
+                    </li>
+                </ui:insert>
             </ul>
 
             <a class="nav-item" href="https://github.com/levnikmyskin/tecnling_vgg">See on GitHub<img class="ml-3" src="img/GitHub-Mark-32px.png" alt=""/></a>
@@ -35,7 +43,8 @@
     <!--END NAVBAR-->
 
     <div class="container">
-        <div class="row">
+        <ui:insert name="header"/>
+        <div class="row mt-3">
             <ui:insert name="main_content"/>
         </div>
     </div>
