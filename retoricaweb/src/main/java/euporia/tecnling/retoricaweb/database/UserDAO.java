@@ -8,6 +8,7 @@ import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 
 /**
@@ -18,8 +19,8 @@ import javax.validation.constraints.NotNull;
  * @author andrea
  */
 
-public class UserDAO extends DatabaseDAOModel implements SessionStorable, DatabaseReadable {
-
+public class UserDAO extends DatabaseDAOModel implements SessionStorable, DatabaseReadable, Serializable {
+    private static final long serialVersionUID = -6339679382618922173L;
     private String username;
     private String password;
     private String name;
@@ -31,7 +32,7 @@ public class UserDAO extends DatabaseDAOModel implements SessionStorable, Databa
         initUser(this.retrieveFromDb());
     }
 
-    public UserDAO(Document document){
+    private UserDAO(Document document){
         initUser(document);
     }
 

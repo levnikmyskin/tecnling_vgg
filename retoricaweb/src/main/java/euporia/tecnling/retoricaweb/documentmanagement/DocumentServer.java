@@ -7,12 +7,14 @@ import euporia.tecnling.retoricaweb.utils.AppConstants;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class DocumentServer implements SessionStorable{
+public class DocumentServer implements SessionStorable, Serializable{
+    private static final long serialVersionUID = -8012965628151083733L;
     private String filePathTemplate;
     private int currentTextIndex;
     private int nextTextIndex;
