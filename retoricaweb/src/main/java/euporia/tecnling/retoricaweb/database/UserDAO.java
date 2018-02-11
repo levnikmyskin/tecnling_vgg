@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
  * @author andrea
  */
 
-public class UserDAO extends DatabaseDAOModel implements SessionStorable, Readable{
+public class UserDAO extends DatabaseDAOModel implements SessionStorable, DatabaseReadable {
 
     private String username;
     private String password;
@@ -38,24 +38,8 @@ public class UserDAO extends DatabaseDAOModel implements SessionStorable, Readab
 
     @Override
     public void saveIntoSession(){
-        SessionHelper sessionHelper = SessionHelper.fromFacesContext(true);
+        SessionHelper<UserDAO> sessionHelper = new SessionHelper<>(SessionHelper.fromFacesContext(true));
         sessionHelper.getSession().setAttribute(AppConstants.USER_SESSION, this);
-    }
-
-    public static UserDAO retrieveFromFacesContext(){
-        try {
-            return (UserDAO) SessionHelper.fromFacesContext(false).getInstance(AppConstants.USER_SESSION);
-        } catch (NullPointerException e){
-            return null;
-        }
-    }
-
-    public static UserDAO retrieveFromRequest(HttpServletRequest request){
-        try{
-            return (UserDAO) SessionHelper.fromHttpRequest(request).getInstance(AppConstants.USER_SESSION);
-        } catch (NullPointerException e){
-            return null;
-        }
     }
 
     public static DatabaseDAOModel initializeFromDbQuery(@NotNull Document document){

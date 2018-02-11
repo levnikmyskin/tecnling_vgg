@@ -12,46 +12,44 @@ import javax.validation.constraints.NotNull;
  * @author alessio
  */
 
-public class SessionHelper {
+public class SessionHelper<T> {
     private HttpSession session;
 
-    private SessionHelper(HttpSession session){
+
+    public SessionHelper(HttpSession session) {
         this.session = session;
     }
 
-    public static SessionHelper fromFacesContext(boolean create){
+    public static HttpSession fromFacesContext(boolean create){
         try{
-            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(create);
-            return new SessionHelper(session);
+            return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(create);
         } catch (NullPointerException e){
             return null;
         }
     }
 
-    public static SessionHelper fromHttpRequest(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        if (session == null){
+    public static HttpSession fromHttpRequest(HttpServletRequest request){
+        try {
+            return request.getSession();
+        } catch (NullPointerException e) {
             return null;
-        } else {
-            return new SessionHelper(session);
         }
+    }
+
+    /**
+     * Return an object stored in the session, passing its AppConstants defined name. Cast the returned object
+     * to the T class.
+     * @param SESSION_ATTRIBUTE_NAME Name of the object stored in session, taken from AppConstants
+     * @return An instance of Object, which will be casted to T;
+     */
+    public T getObjectFromSession(@NotNull final String SESSION_ATTRIBUTE_NAME){
+        if(session != null)
+            return (T) session.getAttribute(SESSION_ATTRIBUTE_NAME);
+        return null;
     }
 
 
     public HttpSession getSession() {
         return session;
     }
-
-    /**
-     * Return an object stored in the session, passing its AppConstants defined name. Cast the returned object
-     * to your desired class. Eg. (UserDAO) SessionHelper.getInstance(AppConstants.USER_SESSION);
-     * @param SESSION_ATTRIBUTE_NAME Name of the object stored in session, taken from AppConstants
-     * @return An instance of Object, which should be casted to an actual class
-     */
-    public Object getInstance(@NotNull final String SESSION_ATTRIBUTE_NAME) {
-        if(session != null)
-            return session.getAttribute(SESSION_ATTRIBUTE_NAME);
-        return null;
-    }
-
 }

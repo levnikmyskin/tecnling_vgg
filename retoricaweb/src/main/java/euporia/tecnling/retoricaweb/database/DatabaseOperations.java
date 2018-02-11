@@ -38,7 +38,7 @@ public class DatabaseOperations<T extends DatabaseDAOModel>{
     };
 
     /**
-     * Please double check that your {@link DatabaseDAOModel} extending classes overrides the Readable interface
+     * Please double check that your {@link DatabaseDAOModel} extending classes overrides the DatabaseReadable interface
      * static methods
      */
     public DatabaseOperations(Class<? extends DatabaseDAOModel> databaseDao){

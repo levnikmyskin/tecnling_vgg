@@ -1,6 +1,5 @@
 package euporia.tecnling.retoricaweb.database;
 
-import euporia.tecnling.retoricaweb.exceptions.ObjectDoesNotExistException;
 import org.bson.Document;
 
 import javax.validation.constraints.NotNull;
@@ -15,7 +14,7 @@ import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
  * @author alessio
  */
 
-public class DocumentDAO extends DatabaseDAOModel implements Writable, Readable{
+public class DocumentDAO extends DatabaseDAOModel implements DatabaseWritable, DatabaseReadable {
     private Document tags;
     private String title, author, edition, editionType, uploadedBy, dirName, language;
     private int compositionYear;

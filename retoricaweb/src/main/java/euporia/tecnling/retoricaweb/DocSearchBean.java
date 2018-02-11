@@ -2,9 +2,8 @@ package euporia.tecnling.retoricaweb;
 
 import com.mongodb.client.MongoIterable;
 import euporia.tecnling.retoricaweb.database.DocumentDAO;
-import euporia.tecnling.retoricaweb.documentmanagement.TextServingHelper;
+import euporia.tecnling.retoricaweb.documentmanagement.TextSearchingHelper;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
@@ -18,7 +17,7 @@ public class DocSearchBean implements Serializable{
     private MongoIterable<DocumentDAO> documents;
 
     public void doSearch(){
-        this.documents = new TextServingHelper().getDocumentsByAuthor(this.searchString);
+        this.documents = new TextSearchingHelper().getDocumentsByAuthor(this.searchString);
     }
 
     public MongoIterable<DocumentDAO> getDocuments() {

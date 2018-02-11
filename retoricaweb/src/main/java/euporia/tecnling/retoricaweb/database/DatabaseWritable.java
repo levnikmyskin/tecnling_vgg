@@ -6,6 +6,6 @@ package euporia.tecnling.retoricaweb.database;
  *
  * @author alessio
  */
-interface Writable {
+interface DatabaseWritable {
     boolean write();
 }

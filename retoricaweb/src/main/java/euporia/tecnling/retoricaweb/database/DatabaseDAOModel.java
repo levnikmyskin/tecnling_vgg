@@ -15,12 +15,12 @@ import org.bson.Document;
  * Base class for Db modeling. It has to be extended for every model in this package.
  * It deals with a single object from the collection, per instance.
  *
- * <p style="color: red">WARNING: Every subclass that can be read MUST "override" the {@link Readable} static methods</p>
+ * <p style="color: red">WARNING: Every subclass that can be read MUST "override" the {@link DatabaseReadable} static methods</p>
  *
  * @author alessio
  */
 
-public class DatabaseDAOModel implements Readable{
+public class DatabaseDAOModel implements DatabaseReadable {
 
 
     private MongoDatabase database;

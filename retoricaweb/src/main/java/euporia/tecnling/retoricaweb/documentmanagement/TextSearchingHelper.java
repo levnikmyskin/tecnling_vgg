@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TextServingHelper {
+public class TextSearchingHelper {
 
     public MongoIterable<DocumentDAO> getDocumentsByAuthor(String author){
         DatabaseOperations<DocumentDAO> dbOperation = new DatabaseOperations<>(DocumentDAO.class);
@@ -22,12 +22,12 @@ public class TextServingHelper {
 
     }
 
-    public ArrayList<DocumentDAO> getDocumentsByYear(int year){
+    public MongoIterable<DocumentDAO> getDocumentsByYear(int year){
         // STUB
         return null;
     }
 
-    public ArrayList<DocumentDAO> getDocumentsByLanguage(LanguageEnum language){
+    public MongoIterable<DocumentDAO> getDocumentsByLanguage(LanguageEnum language){
         // STUB
         return null;
     }

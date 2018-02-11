@@ -34,7 +34,8 @@ public class LoginFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String loginUrl = request.getContextPath() + "/login.xhtml";
 
-        boolean isLoggedIn = UserDAO.retrieveFromRequest(request) != null;
+        SessionHelper<UserDAO> sessionHelper = new SessionHelper<>(SessionHelper.fromHttpRequest(request));
+        boolean isLoggedIn = sessionHelper.getObjectFromSession(AppConstants.USER_SESSION) != null;
         boolean isLoginRequest = request.getRequestURI().equals(loginUrl);
 
         if (isLoggedIn || isLoginRequest){

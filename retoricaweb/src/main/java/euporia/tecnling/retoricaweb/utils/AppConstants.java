@@ -31,6 +31,8 @@ public final class AppConstants {
     public static final String USER_ROLES = "roles";
 
 
+    // DOCUMENTSERVER's CONSTANTS STRINGS
+    public static final String DOCUMENTSERVER_SESSION = "documentServerSession";
 
 
     // Prevent instantiating

@@ -54,8 +54,7 @@ public class DocumentUploadHelper {
         return path;
     }
 
-    private boolean splitDocument(Part file, String dirPath)
-            throws IOException{
+    private boolean splitDocument(Part file, String dirPath) throws IOException{
         int lineCounter = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
         String line;

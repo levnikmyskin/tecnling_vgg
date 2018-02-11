@@ -5,7 +5,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.validation.constraints.NotNull;
 
-interface Readable{
+interface DatabaseReadable {
     static String getCollectionName(){
         throw new NotImplementedException();
     }
