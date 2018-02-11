@@ -3,7 +3,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:head>
     <meta charset="UTF-8"/>
     <title>Euporia Champagne - Search document</title>
@@ -31,30 +32,39 @@
                             </h:commandButton>
                         </div>
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="byAuthorRadio" name="radioGroup" value="#{docSearchBean.byAuthor}" class="custom-control-input" checked="checked"/>
-                            <label class="custom-control-label" for="byAuthorRadio">By author</label>
-                        </div>
+                        <ui:repeat value="#{docSearchBean.searchParameters}" var="sParam">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" type="radio" id="#{sParam}" name="#{hiddenItem.clientId}" value="#{sParam}"/>
+                                <label for="#{sParam}" class="custom-control-label">#{sParam}</label>
+                            </div>
+                        </ui:repeat>
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="byTitle" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byTitle}"/>
-                            <label class="custom-control-label" for="byTitle">By title</label>
-                        </div>
+                        <h:inputHidden id="selectedItem" binding="#{hiddenItem}" value="#{docSearchBean.searchParameter}"
+                                       rendered="#{facesContext.currentPhaseId.ordinal ne 6}" />
+                        <!--<div class="custom-control custom-radio custom-control-inline">-->
+                            <!--<input type="radio" jsf:id="#{docSearchBean.searchParameter}" name="radioGroup" value="author" class="custom-control-input" checked=""/>-->
+                            <!--<label class="custom-control-label" jsf:for="#{docSearchBean.searchParameter}">By author</label>-->
+                        <!--</div>-->
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="byLang" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byLang}"/>
-                            <label class="custom-control-label" for="byLang">By lang</label>
-                        </div>
+                        <!--<div class="custom-control custom-radio custom-control-inline">-->
+                            <!--<input type="radio" id="byTitle" name="radioGroup" class="custom-control-input" value="title"/>-->
+                            <!--<label class="custom-control-label" for="byTitle">By title</label>-->
+                        <!--</div>-->
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="byYear" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byYear}"/>
-                            <label class="custom-control-label" for="byYear">By year</label>
-                        </div>
+                        <!--<div class="custom-control custom-radio custom-control-inline">-->
+                            <!--<input type="radio" id="byLang" name="radioGroup" class="custom-control-input" value="lang"/>-->
+                            <!--<label class="custom-control-label" for="byLang">By lang</label>-->
+                        <!--</div>-->
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="byEditionType" name="radioGroup" class="custom-control-input" value="#{docSearchBean.byEditionType}"/>
-                            <label class="custom-control-label" for="byEditionType">By edition type</label>
-                        </div>
+                        <!--<div class="custom-control custom-radio custom-control-inline">-->
+                            <!--<input type="radio" id="byYear" name="radioGroup" class="custom-control-input" value="year"/>-->
+                            <!--<label class="custom-control-label" for="byYear">By year</label>-->
+                        <!--</div>-->
+
+                        <!--<div class="custom-control custom-radio custom-control-inline">-->
+                            <!--<input type="radio" id="byEditionType" name="radioGroup" class="custom-control-input" value="edType"/>-->
+                            <!--<label class="custom-control-label" for="byEditionType">By edition type</label>-->
+                        <!--</div>-->
                     </h:form>
                 </div>
             </div>
@@ -82,6 +92,11 @@
                             </h:column>
 
                             <h:column>
+                                <f:facet name="header">Comp. year</f:facet>
+                                #{document.compositionYear}
+                            </h:column>
+
+                            <h:column>
                                 <f:facet name="header">Edition type</f:facet>
                                 #{document.editionType}
                             </h:column>
@@ -92,7 +107,11 @@
                             </h:column>
 
                             <h:column>
-                                <h:link class="btn btn-outline-primary" outcome="#">View</h:link>
+                                <h:outputLink class="btn btn-outline-primary" outcome="document_tagging.xhtml">
+                                    <f:param name="fileName" value="#{document.dirName}"/>
+                                    <f:param name="fileIndex" value="0"/>
+                                    Tag
+                                </h:outputLink>
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>

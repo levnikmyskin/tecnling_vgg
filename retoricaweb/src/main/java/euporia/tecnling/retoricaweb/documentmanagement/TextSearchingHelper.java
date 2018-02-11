@@ -28,8 +28,12 @@ public class TextSearchingHelper {
     }
 
     public MongoIterable<DocumentDAO> getDocumentsByLanguage(LanguageEnum language){
-        // STUB
-        return null;
+        DatabaseOperations<DocumentDAO> dbOperation = new DatabaseOperations<>(DocumentDAO.class);
+        try{
+            return dbOperation.searchDataByField(AppConstants.DOC_LANG, language.name());
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e){
+            return null;
+        }
     }
 
 }
