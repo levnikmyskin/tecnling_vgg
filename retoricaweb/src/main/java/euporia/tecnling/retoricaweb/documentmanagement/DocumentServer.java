@@ -20,7 +20,7 @@ public class DocumentServer implements SessionStorable, Serializable{
     private int nextTextIndex;
 
     public DocumentServer(String fileName, int currentTextIndex){
-        this.filePathTemplate = String.format("%s/%s", AppConstants.DOCUMENT_DIRECTORY, fileName);
+        this.filePathTemplate = String.format("%s/%s/%s", AppConstants.DOCUMENT_DIRECTORY, fileName, fileName);
         this.currentTextIndex = currentTextIndex;
         this.nextTextIndex = this.currentTextIndex + 1;
     }
@@ -49,7 +49,7 @@ public class DocumentServer implements SessionStorable, Serializable{
     }
 
     private List<String> getTextPortion(int portionIndex) throws IOException{
-        Path file = Paths.get(filePathTemplate + portionIndex + ".txt");
+        Path file = Paths.get(filePathTemplate + "_" + portionIndex + ".txt");
         return Files.readAllLines(file);
     }
 }

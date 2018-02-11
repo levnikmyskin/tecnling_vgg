@@ -20,10 +20,6 @@ public class DocTaggingServerBean implements Serializable{
         this.fileLines = documentServer.getCurrentTextPortion();
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public String getFileName() {
         return fileName;
     }

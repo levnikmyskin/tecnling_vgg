@@ -41,30 +41,7 @@
 
                         <h:inputHidden id="selectedItem" binding="#{hiddenItem}" value="#{docSearchBean.searchParameter}"
                                        rendered="#{facesContext.currentPhaseId.ordinal ne 6}" />
-                        <!--<div class="custom-control custom-radio custom-control-inline">-->
-                            <!--<input type="radio" jsf:id="#{docSearchBean.searchParameter}" name="radioGroup" value="author" class="custom-control-input" checked=""/>-->
-                            <!--<label class="custom-control-label" jsf:for="#{docSearchBean.searchParameter}">By author</label>-->
-                        <!--</div>-->
 
-                        <!--<div class="custom-control custom-radio custom-control-inline">-->
-                            <!--<input type="radio" id="byTitle" name="radioGroup" class="custom-control-input" value="title"/>-->
-                            <!--<label class="custom-control-label" for="byTitle">By title</label>-->
-                        <!--</div>-->
-
-                        <!--<div class="custom-control custom-radio custom-control-inline">-->
-                            <!--<input type="radio" id="byLang" name="radioGroup" class="custom-control-input" value="lang"/>-->
-                            <!--<label class="custom-control-label" for="byLang">By lang</label>-->
-                        <!--</div>-->
-
-                        <!--<div class="custom-control custom-radio custom-control-inline">-->
-                            <!--<input type="radio" id="byYear" name="radioGroup" class="custom-control-input" value="year"/>-->
-                            <!--<label class="custom-control-label" for="byYear">By year</label>-->
-                        <!--</div>-->
-
-                        <!--<div class="custom-control custom-radio custom-control-inline">-->
-                            <!--<input type="radio" id="byEditionType" name="radioGroup" class="custom-control-input" value="edType"/>-->
-                            <!--<label class="custom-control-label" for="byEditionType">By edition type</label>-->
-                        <!--</div>-->
                     </h:form>
                 </div>
             </div>
@@ -107,11 +84,11 @@
                             </h:column>
 
                             <h:column>
-                                <h:outputLink class="btn btn-outline-primary" outcome="document_tagging.xhtml">
+                                <h:link class="btn btn-outline-primary" outcome="document_tagging.xhtml">
                                     <f:param name="fileName" value="#{document.dirName}"/>
                                     <f:param name="fileIndex" value="0"/>
                                     Tag
-                                </h:outputLink>
+                                </h:link>
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>

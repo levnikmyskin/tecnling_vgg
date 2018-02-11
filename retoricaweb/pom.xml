@@ -55,6 +55,13 @@
             <version>7.0</version>
         </dependency>
 
+        <!--ANTLR-->
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4</artifactId>
+            <version>4.7.1</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>retoricaweb</finalName>

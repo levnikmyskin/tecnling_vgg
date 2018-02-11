@@ -28,7 +28,9 @@
         <ui:define name="main_content">
             <div class="row mt-3">
                 <div class="col-12">
-
+                    <ui:repeat value="#{docTaggingServerBean.fileLines}" var="line">
+                        <p>#{line}</p>
+                    </ui:repeat>
                 </div>
             </div>
         </ui:define>
