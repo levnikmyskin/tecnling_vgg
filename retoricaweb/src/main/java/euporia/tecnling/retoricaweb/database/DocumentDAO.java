@@ -14,7 +14,7 @@ import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
  * @author alessio
  */
 
-public class DocumentDAO extends DatabaseDAOModel implements DatabaseWritable, DatabaseReadable {
+public class DocumentDAO extends DatabaseModelMongo implements DatabaseWritable, DatabaseReadable {
     private Document tags;
     private String title, author, edition, editionType, uploadedBy, dirName, language;
     private int compositionYear;

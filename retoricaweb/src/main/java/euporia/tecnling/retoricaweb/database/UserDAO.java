@@ -19,7 +19,7 @@ import java.io.Serializable;
  * @author andrea
  */
 
-public class UserDAO extends DatabaseDAOModel implements SessionStorable, DatabaseReadable, Serializable {
+public class UserDAO extends DatabaseModelMongo implements SessionStorable, DatabaseReadable, Serializable {
     private static final long serialVersionUID = -6339679382618922173L;
     private String username;
     private String password;
