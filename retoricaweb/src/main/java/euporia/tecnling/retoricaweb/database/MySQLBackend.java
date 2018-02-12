@@ -1,5 +1,5 @@
 package euporia.tecnling.retoricaweb.database;
 
-abstract class DatabaseDAOModel {
+interface MySQLBackend extends DBBackend{
     // STUB
 }

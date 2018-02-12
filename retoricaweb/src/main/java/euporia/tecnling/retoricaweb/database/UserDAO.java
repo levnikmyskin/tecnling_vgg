@@ -43,7 +43,7 @@ public class UserDAO extends DatabaseModelMongo implements SessionStorable, Data
         sessionHelper.getSession().setAttribute(AppConstants.USER_SESSION, this);
     }
 
-    public static DatabaseDAOModel initializeFromDbQuery(@NotNull Document document){
+    public static DatabaseModelMongo initializeFromDbQuery(@NotNull Document document){
         return new UserDAO(document);
     }
 

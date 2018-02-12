@@ -8,7 +8,7 @@ import static euporia.tecnling.retoricaweb.utils.AppConstants.*;
 
 /**
  * Model to save and update a document into the database.
- * @see DatabaseDAOModel
+ * @see DatabaseModelMongo
  *
  * @author andrea
  * @author alessio
@@ -42,7 +42,7 @@ public class DocumentDAO extends DatabaseModelMongo implements DatabaseWritable,
     }
 
 
-    public static DatabaseDAOModel initializeFromDbQuery(@NotNull Document document){
+    public static DatabaseModelMongo initializeFromDbQuery(@NotNull Document document){
         return new DocumentDAO.Builder().buildFromDbQuery(document);
     }
 

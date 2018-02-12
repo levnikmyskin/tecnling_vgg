@@ -11,7 +11,16 @@ import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 
-public class DatabaseModelMongo extends DatabaseDAOModel{
+/**
+ * Base class for Db modeling, using MongoDB as the DBMS. It has to be extended for every model in this package.
+ * It deals with a single object from the collection, per instance.
+ *
+ * <p style="color: red">WARNING: Every subclass that can be read MUST "override" the {@link DatabaseReadable} static methods</p>
+ *
+ * @author alessio
+ */
+
+public class DatabaseModelMongo extends DatabaseDAOModel implements MongoDBBackend{
 
 
     private MongoDatabase database;
@@ -47,7 +56,8 @@ public class DatabaseModelMongo extends DatabaseDAOModel{
      * the method will return the first instance retrieved
      * @return org.bson.Document
      */
-    Document retrieveFromDb(){
+    @Override
+    public Document retrieveFromDb(){
         return collection.find(eq(uniqueFieldName, uniqueFieldValue)).first();
     }
 
@@ -58,6 +68,7 @@ public class DatabaseModelMongo extends DatabaseDAOModel{
      * @param newValue the new value for the field
      * @return true if succesfully changed
      */
+    @Override
     public boolean changeField(String fieldName, String oldValue, String newValue){
         getCollection().updateOne(
                 eq(fieldName, oldValue),
@@ -66,11 +77,13 @@ public class DatabaseModelMongo extends DatabaseDAOModel{
         return true;
     }
 
+    @Override
     public MongoDatabase getDatabase() {
         return database;
     }
 
-    MongoCollection<Document> getCollection() {
+    @Override
+    public MongoCollection<Document> getCollection() {
         return collection;
     }
 
