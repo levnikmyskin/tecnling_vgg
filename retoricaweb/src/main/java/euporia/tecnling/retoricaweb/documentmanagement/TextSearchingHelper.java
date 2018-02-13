@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class TextSearchingHelper {
 
-    public MongoIterable<DocumentDAO> getDocumentsByAuthor(String author){
+    public Iterable<DocumentDAO> getDocumentsByAuthor(String author){
         DatabaseOperations<DocumentDAO> dbOperation = new DatabaseOperations<>(DocumentDAO.class);
         try {
             return dbOperation.searchDataByFieldIgnoreCase(AppConstants.DOC_AUTHOR, author);
@@ -22,12 +22,12 @@ public class TextSearchingHelper {
 
     }
 
-    public MongoIterable<DocumentDAO> getDocumentsByYear(int year){
+    public Iterable<DocumentDAO> getDocumentsByYear(int year){
         // STUB
         return null;
     }
 
-    public MongoIterable<DocumentDAO> getDocumentsByLanguage(LanguageEnum language){
+    public Iterable<DocumentDAO> getDocumentsByLanguage(LanguageEnum language){
         DatabaseOperations<DocumentDAO> dbOperation = new DatabaseOperations<>(DocumentDAO.class);
         try{
             return dbOperation.searchDataByField(AppConstants.DOC_LANG, language.name());

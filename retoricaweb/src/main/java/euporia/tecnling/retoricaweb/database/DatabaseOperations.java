@@ -45,7 +45,7 @@ public class DatabaseOperations<T extends DatabaseDAOModel>{
         this.databaseDao = databaseDao;
     }
 
-    public MongoIterable<T> searchDataByField(String fieldName, Object fieldValue)
+    public Iterable<T> searchDataByField(String fieldName, Object fieldValue)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException{
         MongoCollection<Document> collection = getCollection(fieldName, fieldValue);
         return collection.find(eq(fieldName, fieldValue)).map(this.mapFunction);
@@ -57,7 +57,7 @@ public class DatabaseOperations<T extends DatabaseDAOModel>{
      *
      * @param fieldValue The value to look for, passed as a string. It will be inserted in a regex as is.
      */
-    public MongoIterable<T> searchDataByFieldIgnoreCase(String fieldName, String fieldValue)
+    public Iterable<T> searchDataByFieldIgnoreCase(String fieldName, String fieldValue)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException{
         MongoCollection<Document> collection = getCollection(fieldName, fieldValue);
         return collection.find(regex(fieldName, fieldValue, "i")).map(this.mapFunction);

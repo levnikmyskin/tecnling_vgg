@@ -1,10 +1,12 @@
 package euporia.tecnling.retoricaweb;
 
 import euporia.tecnling.retoricaweb.documentmanagement.DocumentServer;
+import euporia.tecnling.retoricaweb.dsl.DslServiceLoader;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 @ManagedBean
@@ -38,5 +40,10 @@ public class DocTaggingServerBean implements Serializable{
 
     public List<String> getFileLines() {
         return fileLines;
+    }
+
+    public Iterator getDslPlugins() {
+        DslServiceLoader serviceLoader = new DslServiceLoader();
+        return serviceLoader.loadProvider();
     }
 }

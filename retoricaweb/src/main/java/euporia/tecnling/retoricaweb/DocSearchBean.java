@@ -15,13 +15,13 @@ public class DocSearchBean implements Serializable{
     private static final long serialVersionUID = 4193074060628764917L;
     private String searchString, searchParameter;
     private String[] searchParameters = {"By author", "By title", "By language", "By year", "By edition type"};
-    private MongoIterable<DocumentDAO> documents;
+    private Iterable<DocumentDAO> documents;
 
     public void doSearch(){
         this.documents = manageSearchRequest();
     }
 
-    public MongoIterable<DocumentDAO> getDocuments() {
+    public Iterable<DocumentDAO> getDocuments() {
         return documents;
     }
 
@@ -45,7 +45,7 @@ public class DocSearchBean implements Serializable{
         this.searchParameter = searchParameter;
     }
 
-    private MongoIterable<DocumentDAO> manageSearchRequest(){
+    private Iterable<DocumentDAO> manageSearchRequest(){
         TextSearchingHelper textSearchingHelper = new TextSearchingHelper();
         switch (searchParameter){
             case "By author":
