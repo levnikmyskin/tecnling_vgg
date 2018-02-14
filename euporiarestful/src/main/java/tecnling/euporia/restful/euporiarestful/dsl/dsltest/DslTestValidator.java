@@ -1,6 +1,6 @@
-package euporia.tecnling.retoricaweb.dsl.dsltest;
+package tecnling.euporia.restful.euporiarestful.dsl.dsltest;
 
-import euporia.tecnling.retoricaweb.dsl.UsableForTagging;
+import tecnling.euporia.restful.euporiarestful.dsl.UsableForTagging;
 
 import java.io.InputStream;
 

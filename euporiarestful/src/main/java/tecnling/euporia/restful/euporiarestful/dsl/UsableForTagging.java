@@ -1,4 +1,4 @@
-package euporia.tecnling.retoricaweb.dsl;
+package tecnling.euporia.restful.euporiarestful.dsl;
 
 import java.io.InputStream;
 

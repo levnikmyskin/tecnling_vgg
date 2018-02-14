@@ -5,8 +5,9 @@ import euporia.tecnling.retoricaweb.dsl.DslServiceLoader;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
@@ -16,10 +17,19 @@ public class DocTaggingServerBean implements Serializable{
     private String fileName;
     private int fileIndex;
     private List<String> fileLines;
+    private ArrayList<String[]> availableDslPlugins;
+    private ArrayList<String> enabledPlugins;
 
     public void loadFile(){
         DocumentServer documentServer = new DocumentServer(fileName, fileIndex);
         this.fileLines = documentServer.getCurrentTextPortion();
+        this.availableDslPlugins = DslServiceLoader.getInstance().getDslServices();
+        this.enabledPlugins = new ArrayList<>();
+    }
+
+    public void enablePlugin(){
+        String plugin = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("plugin");
+        enabledPlugins.add(plugin);
     }
 
     public String getFileName() {
@@ -42,8 +52,7 @@ public class DocTaggingServerBean implements Serializable{
         return fileLines;
     }
 
-    public Iterator getDslPlugins() {
-        DslServiceLoader serviceLoader = new DslServiceLoader();
-        return serviceLoader.loadProvider();
+    public ArrayList<String[]> getAvailableDslPlugins() {
+        return availableDslPlugins;
     }
 }
