@@ -11,8 +11,6 @@ import tecnling.euporia.restful.euporiarestful.exceptions.ObjectDoesNotExistExce
  * It logs the user in and saves it in the session.
  * It uses BCrypt in order to hash the passwords
  *
- * TODO session handling
- *
  * @author andrea
  * @author alessio
  */
@@ -23,12 +21,7 @@ public class LoginHelper {
         try{
             UserDAO user = new UserDAO(username);
 
-            if (BCrypt.checkpw(password, user.getPassword())) {
-                user.saveIntoSession();
-                return true;
-            }
-
-            return false;
+            return BCrypt.checkpw(password, user.getPassword());
         } catch(ObjectDoesNotExistException e){
             return false;
         }
