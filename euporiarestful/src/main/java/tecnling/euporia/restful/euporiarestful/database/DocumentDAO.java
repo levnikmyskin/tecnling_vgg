@@ -1,8 +1,15 @@
 package tecnling.euporia.restful.euporiarestful.database;
 
 import org.bson.Document;
+import org.json.JSONObject;
+import tecnling.euporia.restful.euporiarestful.utils.AppConstants;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import static tecnling.euporia.restful.euporiarestful.utils.AppConstants.*;
 
@@ -27,6 +34,10 @@ public class DocumentDAO extends DatabaseModelMongo implements DatabaseWritable,
         return initializeFields(builder);
     }
 
+    public static DatabaseModelMongo initializeFromDbQuery(@NotNull Document document){
+        return new Builder().buildFromDbQuery(document);
+    }
+
     public boolean write(){
         Document document = new Document(DOC_TITLE, title)
                 .append(DOC_AUTHOR, author)
@@ -41,9 +52,16 @@ public class DocumentDAO extends DatabaseModelMongo implements DatabaseWritable,
         return true;
     }
 
-
-    public static DatabaseModelMongo initializeFromDbQuery(@NotNull Document document){
-        return new Builder().buildFromDbQuery(document);
+    public JSONObject toJson(){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(AppConstants.DOC_AUTHOR, author);
+        jsonObject.put(DOC_DATE, compositionYear);
+        jsonObject.put(DOC_LANG, language);
+        jsonObject.put(DOC_ED_NAME, edition);
+        jsonObject.put(DOC_ED_TYPE, editionType);
+        jsonObject.put(DOC_UPD, uploadedBy);
+        jsonObject.put(DOC_DIRNAME, dirName);
+        return jsonObject;
     }
 
     public static String getCollectionName(){
@@ -54,7 +72,7 @@ public class DocumentDAO extends DatabaseModelMongo implements DatabaseWritable,
         return "title";
     }
 
-   /* GETTERS */
+    /* GETTERS */
 
     public String getTitle() {
         return title;

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * https://www.journaldev.com/7252/jsf-authentication-login-logout-database-example for reference
  */
 
+@Deprecated
 @WebFilter(filterName = "LoginFilter", urlPatterns = {"*.xhtml", "*.jsf"})
 public class LoginFilter implements Filter{
 

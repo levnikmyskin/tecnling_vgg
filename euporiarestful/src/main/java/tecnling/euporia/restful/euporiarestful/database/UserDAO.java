@@ -1,5 +1,6 @@
 package tecnling.euporia.restful.euporiarestful.database;
 
+import org.json.JSONObject;
 import tecnling.euporia.restful.euporiarestful.sessionmanagement.SessionHelper;
 import tecnling.euporia.restful.euporiarestful.sessionmanagement.SessionStorable;
 import tecnling.euporia.restful.euporiarestful.utils.AppConstants;
@@ -45,6 +46,11 @@ public class UserDAO extends DatabaseModelMongo implements SessionStorable, Data
 
     public static DatabaseModelMongo initializeFromDbQuery(@NotNull Document document){
         return new UserDAO(document);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        return null;
     }
 
     public static String getCollectionName(){

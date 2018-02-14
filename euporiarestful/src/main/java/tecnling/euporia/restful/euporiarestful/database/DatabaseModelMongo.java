@@ -7,6 +7,8 @@ import tecnling.euporia.restful.euporiarestful.utils.AppConstants;
 import tecnling.euporia.restful.euporiarestful.utils.MongodbHelper;
 import org.bson.Document;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;

@@ -1,6 +1,7 @@
 package tecnling.euporia.restful.euporiarestful.database;
 
 import org.bson.Document;
+import org.json.JSONObject;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.validation.constraints.NotNull;
@@ -17,4 +18,6 @@ interface DatabaseReadable {
     static DatabaseDAOModel initializeFromDbQuery(@NotNull Document document){
         throw new NotImplementedException();
     }
+
+    JSONObject toJson();
 }
